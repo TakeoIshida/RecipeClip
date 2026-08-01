@@ -1,0 +1,129 @@
+name: Deploy RecipeClip to App Store Connect
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: recipeclip-app-store-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        shell: bash
+        run: |
+          XCODE_PATH=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort | tail -1)
+          if [ -z "$XCODE_PATH" ]; then
+            echo "Xcode 26 is required but was not found on this runner."
+            ls /Applications | grep Xcode || true
+            exit 1
+          fi
+          sudo xcode-select -s "$XCODE_PATH"
+          xcodebuild -version
+
+      - name: Import distribution certificate
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o "$RUNNER_TEMP/certificate.p12"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$RUNNER_TEMP/build.keychain-db"
+          security default-keychain -s "$RUNNER_TEMP/build.keychain-db"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$RUNNER_TEMP/build.keychain-db"
+          security import "$RUNNER_TEMP/certificate.p12" \
+            -k "$RUNNER_TEMP/build.keychain-db" \
+            -P "$P12_PASSWORD" \
+            -T /usr/bin/codesign
+          security set-key-partition-list \
+            -S apple-tool:,apple: \
+            -s \
+            -k "$KEYCHAIN_PASSWORD" \
+            "$RUNNER_TEMP/build.keychain-db"
+
+      - name: Set up App Store Connect API key
+        env:
+          ASC_API_KEY_BASE64: ${{ secrets.ASC_API_KEY_BASE64 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+        run: |
+          mkdir -p "$HOME/.appstoreconnect/private_keys"
+          echo -n "$ASC_API_KEY_BASE64" | base64 --decode \
+            -o "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8"
+
+      - name: Run tests
+        run: |
+          DESTINATION_ID=$(xcodebuild \
+            -project RecipeClip.xcodeproj \
+            -scheme RecipeClip \
+            -showdestinations | \
+            sed -n 's/.*platform:iOS Simulator,.*id:\([^,]*\),.*name:iPhone.*/\1/p' | \
+            head -1 | xargs)
+          if [ -z "$DESTINATION_ID" ]; then
+            echo "An available iPhone simulator was not found."
+            xcodebuild -project RecipeClip.xcodeproj -scheme RecipeClip -showdestinations
+            exit 1
+          fi
+          xcodebuild test \
+            -project RecipeClip.xcodeproj \
+            -scheme RecipeClip \
+            -destination "platform=iOS Simulator,id=$DESTINATION_ID" \
+            -parallel-testing-enabled NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Build archive
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          xcodebuild archive \
+            -project RecipeClip.xcodeproj \
+            -scheme RecipeClip \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/RecipeClip.xcarchive" \
+            -allowProvisioningUpdates \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" \
+            DEVELOPMENT_TEAM=JS3245KG7Q
+
+      - name: Export IPA
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/RecipeClip.xcarchive" \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath "$RUNNER_TEMP/output" \
+            -allowProvisioningUpdates \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8"
+
+      - name: Upload to App Store Connect
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          IPA_PATH=$(find "$RUNNER_TEMP/output" -maxdepth 1 -name '*.ipa' -print -quit)
+          if [ -z "$IPA_PATH" ]; then
+            echo "Exported IPA was not found."
+            exit 1
+          fi
+          xcrun altool --upload-app \
+            --type ios \
+            --file "$IPA_PATH" \
+            --apiKey "$ASC_KEY_ID" \
+            --apiIssuer "$ASC_ISSUER_ID"
+
+      - name: Clean temporary keychain
+        if: always()
+        run: security delete-keychain "$RUNNER_TEMP/build.keychain-db" || true

@@ -1,0 +1,229 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B00100000000000000000001 /* RecipeClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000001 /* RecipeClipApp.swift */; };
+		B00100000000000000000002 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000002 /* RecipeListView.swift */; };
+		B00100000000000000000003 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000003 /* RecipeDetailView.swift */; };
+		B00100000000000000000004 /* RecipeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000004 /* RecipeEditorView.swift */; };
+		B00100000000000000000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000005 /* Assets.xcassets */; };
+		B00100000000000000000006 /* RecipeAutoFillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000007 /* RecipeAutoFillService.swift */; };
+		B00100000000000000000007 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000009 /* AppInfoView.swift */; };
+		B00100000000000000000008 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000005 /* PrivacyInfo.xcprivacy */; };
+		B00100000000000000000009 /* PrivacyConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000010 /* PrivacyConsentView.swift */; };
+		B00100000000000000000010 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000011 /* AppRootView.swift */; };
+		B00100000000000000000011 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000012 /* ShoppingListView.swift */; };
+		B00100000000000000000012 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000013 /* ShoppingListService.swift */; };
+		B00100000000000000000013 /* BackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000014 /* BackupService.swift */; };
+		B00100000000000000000014 /* BackupRestoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000015 /* BackupRestoreView.swift */; };
+		B00100000000000000000015 /* CookingModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000016 /* CookingModeView.swift */; };
+		B00100000000000000000016 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000017 /* OnboardingView.swift */; };
+		B00200000000000000000001 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000001 /* RecipeModels.swift */; };
+		B00200000000000000000002 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000002 /* SharedModelContainer.swift */; };
+		B00200000000000000000003 /* YouTubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000003 /* YouTubeService.swift */; };
+		B00200000000000000000004 /* RecipeThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000004 /* RecipeThumbnail.swift */; };
+		B00200000000000000000005 /* AppConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000006 /* AppConsent.swift */; };
+		B00300000000000000000001 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00300000000000000000001 /* ShareViewController.swift */; };
+		B00300000000000000000002 /* ShareRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00300000000000000000002 /* ShareRootView.swift */; };
+		B00300000000000000000003 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000001 /* RecipeModels.swift */; };
+		B00300000000000000000004 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000002 /* SharedModelContainer.swift */; };
+		B00300000000000000000005 /* YouTubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000003 /* YouTubeService.swift */; };
+		B00300000000000000000006 /* RecipeThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000004 /* RecipeThumbnail.swift */; };
+		B00300000000000000000007 /* RecipeClipShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = P00300000000000000000001 /* RecipeClipShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B00300000000000000000008 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000005 /* PrivacyInfo.xcprivacy */; };
+		B00300000000000000000009 /* AppConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000006 /* AppConsent.swift */; };
+		B00400000000000000000001 /* YouTubeURLNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000001 /* YouTubeURLNormalizerTests.swift */; };
+		B00400000000000000000002 /* YouTubeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000002 /* YouTubeServiceTests.swift */; };
+		B00400000000000000000003 /* RecipeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000003 /* RecipeModelTests.swift */; };
+		B00400000000000000000004 /* ShoppingListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000004 /* ShoppingListServiceTests.swift */; };
+		B00400000000000000000005 /* BackupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000005 /* BackupServiceTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		X00100000000000000000001 = {isa = PBXContainerItemProxy; containerPortal = PRJ000000000000000000001; proxyType = 1; remoteGlobalIDString = T00300000000000000000001; remoteInfo = RecipeClipShareExtension; };
+		X00100000000000000000002 = {isa = PBXContainerItemProxy; containerPortal = PRJ000000000000000000001; proxyType = 1; remoteGlobalIDString = T00100000000000000000001; remoteInfo = RecipeClip; };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		PH00100000000000000000004 = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (B00300000000000000000007 /* RecipeClipShareExtension.appex in Embed App Extensions */, );
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		P00100000000000000000001 /* RecipeClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		P00300000000000000000001 /* RecipeClipShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = RecipeClipShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		P00400000000000000000001 /* RecipeClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipeClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F00100000000000000000001 /* RecipeClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeClipApp.swift; sourceTree = "<group>"; };
+		F00100000000000000000002 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		F00100000000000000000003 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		F00100000000000000000004 /* RecipeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeEditorView.swift; sourceTree = "<group>"; };
+		F00100000000000000000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F00100000000000000000006 /* RecipeClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecipeClip.entitlements; sourceTree = "<group>"; };
+		F00100000000000000000007 /* RecipeAutoFillService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAutoFillService.swift; sourceTree = "<group>"; };
+		F00100000000000000000008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F00100000000000000000009 /* AppInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
+		F00100000000000000000010 /* PrivacyConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyConsentView.swift; sourceTree = "<group>"; };
+		F00100000000000000000011 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+		F00100000000000000000012 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
+		F00100000000000000000013 /* ShoppingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
+		F00100000000000000000014 /* BackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupService.swift; sourceTree = "<group>"; };
+		F00100000000000000000015 /* BackupRestoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRestoreView.swift; sourceTree = "<group>"; };
+		F00100000000000000000016 /* CookingModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingModeView.swift; sourceTree = "<group>"; };
+		F00100000000000000000017 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F00200000000000000000001 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
+		F00200000000000000000002 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
+		F00200000000000000000003 /* YouTubeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeService.swift; sourceTree = "<group>"; };
+		F00200000000000000000004 /* RecipeThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeThumbnail.swift; sourceTree = "<group>"; };
+		F00200000000000000000005 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F00200000000000000000006 /* AppConsent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConsent.swift; sourceTree = "<group>"; };
+		F00300000000000000000001 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		F00300000000000000000002 /* ShareRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRootView.swift; sourceTree = "<group>"; };
+		F00300000000000000000003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F00300000000000000000004 /* RecipeClipShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecipeClipShareExtension.entitlements; sourceTree = "<group>"; };
+		F00400000000000000000001 /* YouTubeURLNormalizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeURLNormalizerTests.swift; sourceTree = "<group>"; };
+		F00400000000000000000002 /* YouTubeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeServiceTests.swift; sourceTree = "<group>"; };
+		F00400000000000000000003 /* RecipeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModelTests.swift; sourceTree = "<group>"; };
+		F00400000000000000000004 /* ShoppingListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListServiceTests.swift; sourceTree = "<group>"; };
+		F00400000000000000000005 /* BackupServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupServiceTests.swift; sourceTree = "<group>"; };
+		F00500000000000000000001 /* RecipeClip.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = RecipeClip.xcconfig; sourceTree = "<group>"; };
+		F00500000000000000000002 /* Local.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig.example; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		PH00100000000000000000002 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		PH00300000000000000000002 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		PH00400000000000000000002 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		G00000000000000000000001 = {
+			isa = PBXGroup;
+			children = (G00100000000000000000001, G00200000000000000000001, G00300000000000000000001, G00400000000000000000001, G00500000000000000000001, G00000000000000000000002, );
+			sourceTree = "<group>";
+		};
+		G00000000000000000000002 /* Products */ = {isa = PBXGroup; children = (P00100000000000000000001, P00300000000000000000001, P00400000000000000000001, ); name = Products; sourceTree = "<group>"; };
+		G00100000000000000000001 /* RecipeClip */ = {
+			isa = PBXGroup;
+			children = (F00100000000000000000001, G00100000000000000000002, G00100000000000000000003, F00100000000000000000005, F00100000000000000000006, F00100000000000000000008, );
+			path = RecipeClip;
+			sourceTree = "<group>";
+		};
+		G00100000000000000000002 /* Views */ = {isa = PBXGroup; children = (F00100000000000000000011, F00100000000000000000002, F00100000000000000000003, F00100000000000000000004, F00100000000000000000012, F00100000000000000000009, F00100000000000000000010, F00100000000000000000015, F00100000000000000000016, F00100000000000000000017, ); path = Views; sourceTree = "<group>"; };
+		G00100000000000000000003 /* Services */ = {isa = PBXGroup; children = (F00100000000000000000007, F00100000000000000000013, F00100000000000000000014, ); path = Services; sourceTree = "<group>"; };
+		G00200000000000000000001 /* Shared */ = {isa = PBXGroup; children = (F00200000000000000000001, F00200000000000000000002, F00200000000000000000003, F00200000000000000000004, F00200000000000000000005, F00200000000000000000006, ); path = Shared; sourceTree = "<group>"; };
+		G00300000000000000000001 /* RecipeClipShareExtension */ = {isa = PBXGroup; children = (F00300000000000000000001, F00300000000000000000002, F00300000000000000000003, F00300000000000000000004, ); path = RecipeClipShareExtension; sourceTree = "<group>"; };
+		G00400000000000000000001 /* RecipeClipTests */ = {isa = PBXGroup; children = (F00400000000000000000001, F00400000000000000000002, F00400000000000000000003, F00400000000000000000004, F00400000000000000000005, ); path = RecipeClipTests; sourceTree = "<group>"; };
+		G00500000000000000000001 /* Config */ = {isa = PBXGroup; children = (F00500000000000000000001, F00500000000000000000002, ); path = Config; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		T00100000000000000000001 /* RecipeClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CL00100000000000000000001;
+			buildPhases = (PH00100000000000000000001, PH00100000000000000000002, PH00100000000000000000003, PH00100000000000000000004, );
+			buildRules = ();
+			dependencies = (D00100000000000000000001, );
+			name = RecipeClip;
+			productName = RecipeClip;
+			productReference = P00100000000000000000001;
+			productType = "com.apple.product-type.application";
+		};
+		T00300000000000000000001 /* RecipeClipShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CL00300000000000000000001;
+			buildPhases = (PH00300000000000000000001, PH00300000000000000000002, PH00300000000000000000003, );
+			buildRules = ();
+			dependencies = ();
+			name = RecipeClipShareExtension;
+			productName = RecipeClipShareExtension;
+			productReference = P00300000000000000000001;
+			productType = "com.apple.product-type.app-extension";
+		};
+		T00400000000000000000001 /* RecipeClipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CL00400000000000000000001;
+			buildPhases = (PH00400000000000000000001, PH00400000000000000000002, PH00400000000000000000003, );
+			buildRules = ();
+			dependencies = (D00100000000000000000002, );
+			name = RecipeClipTests;
+			productName = RecipeClipTests;
+			productReference = P00400000000000000000001;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PRJ000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					T00100000000000000000001 = {CreatedOnToolsVersion = 16.4; };
+					T00300000000000000000001 = {CreatedOnToolsVersion = 16.4; };
+					T00400000000000000000001 = {CreatedOnToolsVersion = 16.4; TestTargetID = T00100000000000000000001; };
+				};
+			};
+			buildConfigurationList = CL00000000000000000000001;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (ja, Base, );
+			mainGroup = G00000000000000000000001;
+			productRefGroup = G00000000000000000000002;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (T00100000000000000000001, T00300000000000000000001, T00400000000000000000001, );
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		PH00100000000000000000003 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (B00100000000000000000005 /* Assets.xcassets in Resources */, B00100000000000000000008 /* PrivacyInfo.xcprivacy in Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		PH00300000000000000000003 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (B00300000000000000000008 /* PrivacyInfo.xcprivacy in Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		PH00400000000000000000003 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		PH00100000000000000000001 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B00100000000000000000001, B00100000000000000000002, B00100000000000000000003, B00100000000000000000004, B00100000000000000000006, B00100000000000000000007, B00100000000000000000009, B00100000000000000000010, B00100000000000000000011, B00100000000000000000012, B00100000000000000000013, B00100000000000000000014, B00100000000000000000015, B00100000000000000000016, B00200000000000000000001, B00200000000000000000002, B00200000000000000000003, B00200000000000000000004, B00200000000000000000005, ); runOnlyForDeploymentPostprocessing = 0; };
+		PH00300000000000000000001 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B00300000000000000000001, B00300000000000000000002, B00300000000000000000003, B00300000000000000000004, B00300000000000000000005, B00300000000000000000006, B00300000000000000000009, ); runOnlyForDeploymentPostprocessing = 0; };
+		PH00400000000000000000001 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B00400000000000000000001, B00400000000000000000002, B00400000000000000000003, B00400000000000000000004, B00400000000000000000005, ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D00100000000000000000001 = {isa = PBXTargetDependency; target = T00300000000000000000001; targetProxy = X00100000000000000000001; };
+		D00100000000000000000002 = {isa = PBXTargetDependency; target = T00100000000000000000001; targetProxy = X00100000000000000000002; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C000D0000000000000000001 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ANALYZER_NONNULL = YES; CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; CLANG_WARN_BOOL_CONVERSION = YES; CLANG_WARN_COMMA = YES; CLANG_WARN_CONSTANT_CONVERSION = YES; CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES; CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR; CLANG_WARN_DOCUMENTATION_COMMENTS = YES; CLANG_WARN_EMPTY_BODY = YES; CLANG_WARN_ENUM_CONVERSION = YES; CLANG_WARN_INFINITE_RECURSION = YES; CLANG_WARN_INT_CONVERSION = YES; CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES; CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES; CLANG_WARN_OBJC_LITERAL_CONVERSION = YES; CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR; CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES; CLANG_WARN_RANGE_LOOP_ANALYSIS = YES; CLANG_WARN_STRICT_PROTOTYPES = YES; CLANG_WARN_SUSPICIOUS_MOVE = YES; CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE; CLANG_WARN_UNREACHABLE_CODE = YES; CLANG_WARN__DUPLICATE_METHOD_MATCH = YES; COPY_PHASE_STRIP = NO; DEBUG_INFORMATION_FORMAT = dwarf; ENABLE_TESTABILITY = YES; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_DYNAMIC_NO_PIC = NO; GCC_NO_COMMON_BLOCKS = YES; GCC_OPTIMIZATION_LEVEL = 0; GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)", ); GCC_WARN_64_TO_32_BIT_CONVERSION = YES; GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR; GCC_WARN_UNDECLARED_SELECTOR = YES; GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE; GCC_WARN_UNUSED_FUNCTION = YES; GCC_WARN_UNUSED_VARIABLE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LOCALIZATION_PREFERS_STRING_CATALOGS = YES; MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE; MTL_FAST_MATH = YES; ONLY_ACTIVE_ARCH = YES; SDKROOT = iphoneos; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; }; name = Debug; };
+		C000R0000000000000000001 = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ANALYZER_NONNULL = YES; CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; CLANG_WARN_BOOL_CONVERSION = YES; CLANG_WARN_COMMA = YES; CLANG_WARN_CONSTANT_CONVERSION = YES; CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES; CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR; CLANG_WARN_DOCUMENTATION_COMMENTS = YES; CLANG_WARN_EMPTY_BODY = YES; CLANG_WARN_ENUM_CONVERSION = YES; CLANG_WARN_INFINITE_RECURSION = YES; CLANG_WARN_INT_CONVERSION = YES; CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES; CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES; CLANG_WARN_OBJC_LITERAL_CONVERSION = YES; CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR; CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES; CLANG_WARN_RANGE_LOOP_ANALYSIS = YES; CLANG_WARN_STRICT_PROTOTYPES = YES; CLANG_WARN_SUSPICIOUS_MOVE = YES; CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE; CLANG_WARN_UNREACHABLE_CODE = YES; CLANG_WARN__DUPLICATE_METHOD_MATCH = YES; COPY_PHASE_STRIP = NO; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; ENABLE_NS_ASSERTIONS = NO; GCC_C_LANGUAGE_STANDARD = gnu17; GCC_NO_COMMON_BLOCKS = YES; GCC_WARN_64_TO_32_BIT_CONVERSION = YES; GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR; GCC_WARN_UNDECLARED_SELECTOR = YES; GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE; GCC_WARN_UNUSED_FUNCTION = YES; GCC_WARN_UNUSED_VARIABLE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LOCALIZATION_PREFERS_STRING_CATALOGS = YES; MTL_ENABLE_DEBUG_INFO = NO; MTL_FAST_MATH = YES; SDKROOT = iphoneos; SWIFT_COMPILATION_MODE = wholemodule; VALIDATE_PRODUCT = YES; }; name = Release; };
+		C001D0000000000000000001 = {isa = XCBuildConfiguration; baseConfigurationReference = F00500000000000000000001 /* RecipeClip.xcconfig */; buildSettings = {ASSETCATALOG_COMPILER_ACCENT_COLOR_NAME = AccentColor; ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGN_ENTITLEMENTS = RecipeClip/RecipeClip.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = RecipeClip/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", ); MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = NO; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		C001R0000000000000000001 = {isa = XCBuildConfiguration; baseConfigurationReference = F00500000000000000000001 /* RecipeClip.xcconfig */; buildSettings = {ASSETCATALOG_COMPILER_ACCENT_COLOR_NAME = AccentColor; ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CODE_SIGN_ENTITLEMENTS = RecipeClip/RecipeClip.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = RecipeClip/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", ); MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = NO; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		C003D0000000000000000001 = {isa = XCBuildConfiguration; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = RecipeClipShareExtension/RecipeClipShareExtension.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = RecipeClipShareExtension/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks", ); MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip.ShareExtension; PRODUCT_NAME = "$(TARGET_NAME)"; SKIP_INSTALL = YES; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = NO; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Debug; };
+		C003R0000000000000000001 = {isa = XCBuildConfiguration; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = RecipeClipShareExtension/RecipeClipShareExtension.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = RecipeClipShareExtension/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 17.0; LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks", ); MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip.ShareExtension; PRODUCT_NAME = "$(TARGET_NAME)"; SKIP_INSTALL = YES; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SUPPORTS_MACCATALYST = NO; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; }; name = Release; };
+		C004D0000000000000000001 = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClipTests; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecipeClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RecipeClip"; }; name = Debug; };
+		C004R0000000000000000001 = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClipTests; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecipeClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RecipeClip"; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CL00000000000000000000001 = {isa = XCConfigurationList; buildConfigurations = (C000D0000000000000000001, C000R0000000000000000001, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CL00100000000000000000001 = {isa = XCConfigurationList; buildConfigurations = (C001D0000000000000000001, C001R0000000000000000001, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CL00300000000000000000001 = {isa = XCConfigurationList; buildConfigurations = (C003D0000000000000000001, C003R0000000000000000001, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CL00400000000000000000001 = {isa = XCConfigurationList; buildConfigurations = (C004D0000000000000000001, C004R0000000000000000001, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = PRJ000000000000000000001 /* Project object */;
+}
