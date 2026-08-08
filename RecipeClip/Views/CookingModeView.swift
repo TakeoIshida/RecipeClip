@@ -20,7 +20,7 @@ struct CookingModeView: View {
                     ForEach(Array(steps.enumerated()), id: \.element.id) { index, step in
                         ScrollView {
                             VStack(alignment: .leading, spacing: 24) {
-                                Text("手順 \(index + 1) / \(steps.count)")
+                                Text(String.localizedStringWithFormat(String(localized: "cooking.step_progress"), index + 1, steps.count))
                                     .font(.headline)
                                     .foregroundStyle(.secondary)
 

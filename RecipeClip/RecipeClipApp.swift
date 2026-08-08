@@ -277,12 +277,12 @@ private struct AppStoreShoppingListView: View {
 
             NavigationStack {
                 List {
-                    Section("未購入 4件") {
+                    Section(String.localizedStringWithFormat(String(localized: "shopping.pending_count"), 4)) {
                         ForEach(items.filter { !$0.isPurchased }) { item in
                             row(item)
                         }
                     }
-                    Section("購入済み 1件") {
+                    Section(String.localizedStringWithFormat(String(localized: "shopping.purchased_count"), 1)) {
                         ForEach(items.filter(\.isPurchased)) { item in
                             row(item)
                         }
@@ -337,7 +337,13 @@ private struct AppStoreCookingModeView: View {
                     .padding(.horizontal)
 
                 VStack(alignment: .leading, spacing: 24) {
-                    Text("手順 1 / \(recipe.steps.count)")
+                    Text(
+                        String.localizedStringWithFormat(
+                            String(localized: "cooking.step_progress"),
+                            1,
+                            recipe.steps.count
+                        )
+                    )
                         .font(.headline)
                         .foregroundStyle(.secondary)
                     Text(recipe.steps[0].text)
@@ -404,7 +410,16 @@ private enum AppStoreSampleData {
     static let featuredRecipeID = UUID(uuidString: "A1100000-0000-4000-8000-000000000001")!
 
     static func makeShoppingItems(featured: AppStoreSampleRecipe) -> [AppStoreSampleShoppingItem] {
-        [
+        if Locale.current.language.languageCode?.identifier == "en" {
+            return [
+                AppStoreSampleShoppingItem(name: "Colorful cherry tomatoes", amount: "8", isPurchased: false, sourceRecipeTitle: featured.title),
+                AppStoreSampleShoppingItem(name: "Lemon", amount: "1", isPurchased: false, sourceRecipeTitle: "Sunlit Lemon Pasta"),
+                AppStoreSampleShoppingItem(name: "Unsweetened soy milk", amount: "300 ml", isPurchased: false, sourceRecipeTitle: "Creamy Green Soy Soup"),
+                AppStoreSampleShoppingItem(name: "Shimeji mushrooms", amount: "1 pack", isPurchased: false, sourceRecipeTitle: "Ginger-Steamed Mushrooms"),
+                AppStoreSampleShoppingItem(name: "Toasted sesame seeds", amount: "1 tbsp", isPurchased: true, sourceRecipeTitle: "Sesame Lotus Root")
+            ]
+        }
+        return [
             AppStoreSampleShoppingItem(name: "カラフルミニトマト", amount: "8個", isPurchased: false, sourceRecipeTitle: featured.title),
             AppStoreSampleShoppingItem(name: "レモン", amount: "1個", isPurchased: false, sourceRecipeTitle: "陽だまりレモンの塩パスタ"),
             AppStoreSampleShoppingItem(name: "無調整豆乳", amount: "300ml", isPurchased: false, sourceRecipeTitle: "まろやか豆乳の森色ポタージュ"),
@@ -414,7 +429,10 @@ private enum AppStoreSampleData {
     }
 
     static func makeRecipes() -> [AppStoreSampleRecipe] {
-        [
+        if Locale.current.language.languageCode?.identifier == "en" {
+            return makeEnglishRecipes()
+        }
+        return [
             makeRecipe(
                 id: featuredRecipeID,
                 title: "星降るトマトの焼きリゾット",
@@ -434,10 +452,31 @@ private enum AppStoreSampleData {
         ]
     }
 
+    private static func makeEnglishRecipes() -> [AppStoreSampleRecipe] {
+        [
+            makeRecipe(
+                id: featuredRecipeID,
+                title: "Starry Tomato Baked Risotto",
+                subtitle: "RecipeClip Kitchen",
+                colors: [UIColor(red: 0.97, green: 0.35, blue: 0.24, alpha: 1), UIColor(red: 1.00, green: 0.72, blue: 0.30, alpha: 1)],
+                ingredients: [("Cooked rice", "1 bowl"), ("Colorful cherry tomatoes", "8"), ("Mozzarella", "60 g"), ("Onion", "1/4"), ("Vegetable stock", "150 ml")],
+                steps: ["Finely chop the onion and halve the cherry tomatoes.", "Sauté the onion until translucent, then add the rice and stock.", "Simmer until a little liquid remains, then scatter over the tomatoes and cheese.", "Cover and steam for 2 minutes, until the cheese melts."],
+                memo: "Add the tomatoes near the end to keep their bright color.",
+                favorite: true,
+                offset: 600
+            ),
+            makeRecipe(title: "Citrus Garden Rice", colors: [.systemGreen, .systemYellow], ingredients: [("Rice", "2 cups"), ("Yuzu", "1/2")], steps: ["Cut the vegetables.", "Cook everything in a rice cooker."], favorite: true, offset: 500),
+            makeRecipe(title: "Creamy Green Soy Soup", colors: [UIColor(red: 0.30, green: 0.65, blue: 0.43, alpha: 1), UIColor(red: 0.72, green: 0.86, blue: 0.54, alpha: 1)], ingredients: [("Unsweetened soy milk", "300 ml"), ("Broccoli", "1/2 head")], steps: ["Simmer the vegetables until tender.", "Blend with the soy milk."], offset: 400),
+            makeRecipe(title: "Sesame Lotus Root", colors: [UIColor(red: 0.58, green: 0.38, blue: 0.24, alpha: 1), UIColor(red: 0.94, green: 0.72, blue: 0.36, alpha: 1)], ingredients: [("Lotus root", "200 g"), ("Toasted sesame seeds", "1 tbsp")], steps: ["Pan-fry the lotus root.", "Coat with sesame sauce."], offset: 300),
+            makeRecipe(title: "Sunlit Lemon Pasta", colors: [.systemYellow, .systemOrange], ingredients: [("Spaghetti", "160 g"), ("Lemon", "1")], steps: ["Boil the pasta.", "Toss with lemon sauce."], favorite: true, offset: 200),
+            makeRecipe(title: "Ginger-Steamed Mushrooms", colors: [UIColor(red: 0.55, green: 0.32, blue: 0.20, alpha: 1), UIColor(red: 0.82, green: 0.60, blue: 0.35, alpha: 1)], ingredients: [("Shimeji mushrooms", "1 pack"), ("Ginger", "1 clove")], steps: ["Separate the mushrooms.", "Steam with ginger and sake."], offset: 100)
+        ]
+    }
+
     private static func makeRecipe(
         id: UUID = UUID(),
         title: String,
-        subtitle: String = "RecipeClip キッチン",
+        subtitle: String? = nil,
         colors: [UIColor],
         ingredients: [(String, String)],
         steps: [String],
@@ -448,7 +487,11 @@ private enum AppStoreSampleData {
         AppStoreSampleRecipe(
             id: id,
             title: title,
-            channelName: subtitle,
+            channelName: subtitle ?? (
+                Locale.current.language.languageCode?.identifier == "en"
+                    ? "RecipeClip Kitchen"
+                    : "RecipeClip キッチン"
+            ),
             thumbnailData: thumbnail(colors: colors),
             isFavorite: favorite,
             ingredients: ingredients.map { AppStoreSampleIngredient(name: $0.0, amount: $0.1) },

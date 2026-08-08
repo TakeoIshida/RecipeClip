@@ -55,9 +55,9 @@ enum BackupServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unsupportedVersion:
-            return "このバックアップは、このバージョンのアプリでは読み込めないよ。"
+            return String(localized: "このバックアップは、このバージョンのアプリでは読み込めないよ。")
         case .invalidContents:
-            return "バックアップの内容を確認できなかったよ。"
+            return String(localized: "バックアップの内容を確認できなかったよ。")
         }
     }
 }

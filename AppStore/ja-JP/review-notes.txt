@@ -14,4 +14,4 @@
 - レシピと買い物リストは端末内に保存されます。
 - バックアップはユーザーが明示的に書き出したファイルのみです。
 
-連絡先: TODO_REVIEW_CONTACT_NAME / TODO_REVIEW_CONTACT_EMAIL / TODO_REVIEW_CONTACT_PHONE
+連絡先: Ishida Takeo / tkotoma@gmail.com / +81 90-6446-7476

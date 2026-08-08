@@ -45,17 +45,17 @@ YouTubeの共有メニューからレシピクリップを選び、動画タイ�
 ## 価格
 
 - 有料買い切り
-- 日本の価格: 100円を希望（App Store Connectで対応する価格ポイントを選択）
+- 日本の価格: リリース記念価格100円、リリース日の1か月後から通常価格300円
 
 ## URL（公開前に必ず確定）
 
-- サポートURL: `TODO_PUBLIC_SUPPORT_URL`
-- プライバシーポリシーURL: `TODO_PUBLIC_PRIVACY_POLICY_URL`
+- サポートURL: `https://takeoishida.github.io/RecipeClip/`
+- プライバシーポリシーURL: `https://takeoishida.github.io/RecipeClip/privacy-policy.html`
 - マーケティングURL: 任意
 
 ## その他
 
 - バージョン: 1.0
-- ビルド: 1
+- ビルド: 2
 - 年齢区分: App Store Connectの新しい質問票に回答して確定
-- 著作権: `TODO_YEAR_AND_SELLER_NAME`
+- 著作権: `2026 Takeo Ishida`

@@ -1,0 +1,12 @@
+RecipeClip lets users save YouTube cooking-video links and organize recipe information for personal use.
+
+No account or sign-in is required. The app does not include advertising, analytics, or tracking. Recipe data and shopping-list data are stored on the device. Users manually paste video descriptions; those descriptions are processed on device and are not retained.
+
+The app uses YouTube API Services only to retrieve a video's title, channel name, and thumbnail from its video ID. Video playback opens YouTube or the user's web browser.
+
+To test automatic organization:
+1. Add a recipe and enter a YouTube video URL.
+2. Paste a description containing headings such as "Ingredients" and "Instructions."
+3. Tap the organize button, review the result, and save.
+
+The included App Store screenshots use fictional recipes and code-generated abstract thumbnails. They contain no third-party photos, logos, people, characters, or product packaging.

@@ -1,0 +1,12 @@
+"shopping.added_count" = "%ld件を買い物リストに追加したよ。";
+"shopping.updated_count" = "%ld件を買い物リストに登録したよ。すでにあった%ld件は最新の分量に更新したよ。";
+"shopping.ingredient_added" = "「%@」を買い物リストに追加したよ。";
+"shopping.ingredient_updated" = "「%@」を最新の分量に更新して、未購入へ戻したよ。";
+"shopping.pending_count" = "未購入 %ld件";
+"shopping.purchased_count" = "購入済み %ld件";
+"cooking.step_progress" = "手順 %ld / %ld";
+"backup.summary" = "レシピ%ld件、買い物項目%ld件のバックアップだよ。現在の内容は置き換わるよ。";
+"shopping.add_ingredient_accessibility" = "%@を買い物リストに追加";
+"shopping.source_recipe" = "追加元 %@";
+"recipe.saved_date" = "保存日 %@";
+"recipe.delete_confirmation" = "「%@」を削除する？";

@@ -70,9 +70,9 @@ struct BackupRestoreView: View {
         ) { result in
             switch result {
             case .success:
-                message = .init(title: "バックアップ完了", text: "ファイルを書き出したよ。大切に保管してね。")
+                message = .init(title: String(localized: "バックアップ完了"), text: String(localized: "ファイルを書き出したよ。大切に保管してね。"))
             case .failure(let error):
-                message = .init(title: "書き出せなかったよ", text: error.localizedDescription)
+                message = .init(title: String(localized: "書き出せなかったよ"), text: error.localizedDescription)
             }
         }
         .fileImporter(isPresented: $isImporting, allowedContentTypes: [.json]) { result in
@@ -82,7 +82,7 @@ struct BackupRestoreView: View {
                 defer { if didAccess { url.stopAccessingSecurityScopedResource() } }
                 pendingBackup = try BackupService.decode(Data(contentsOf: url))
             } catch {
-                message = .init(title: "読み込めなかったよ", text: error.localizedDescription)
+                message = .init(title: String(localized: "読み込めなかったよ"), text: error.localizedDescription)
             }
         }
         .confirmationDialog(
@@ -98,7 +98,7 @@ struct BackupRestoreView: View {
             }
             Button("キャンセル", role: .cancel) { pendingBackup = nil }
         } message: {
-            Text("レシピ\(pendingBackup?.recipes.count ?? 0)件、買い物項目\(pendingBackup?.shoppingItems.count ?? 0)件のバックアップだよ。現在の内容は置き換わるよ。")
+            Text(String.localizedStringWithFormat(String(localized: "backup.summary"), pendingBackup?.recipes.count ?? 0, pendingBackup?.shoppingItems.count ?? 0))
         }
         .alert(item: $message) { message in
             Alert(title: Text(message.title), message: Text(message.text), dismissButton: .default(Text("OK")))
@@ -118,7 +118,7 @@ struct BackupRestoreView: View {
             )
             isExporting = true
         } catch {
-            message = .init(title: "バックアップを作れなかったよ", text: error.localizedDescription)
+            message = .init(title: String(localized: "バックアップを作れなかったよ"), text: error.localizedDescription)
         }
     }
 
@@ -127,10 +127,10 @@ struct BackupRestoreView: View {
         pendingBackup = nil
         do {
             try BackupService.restore(backup, into: modelContext)
-            message = .init(title: "復元完了", text: "レシピと買い物リストを復元したよ。")
+            message = .init(title: String(localized: "復元完了"), text: String(localized: "レシピと買い物リストを復元したよ。"))
         } catch {
             modelContext.rollback()
-            message = .init(title: "復元できなかったよ", text: error.localizedDescription)
+            message = .init(title: String(localized: "復元できなかったよ"), text: error.localizedDescription)
         }
     }
 }

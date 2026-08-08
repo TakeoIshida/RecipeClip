@@ -94,7 +94,7 @@ struct OnboardingView: View {
                     withAnimation { page += 1 }
                 }
             } label: {
-                Text(page == pages.count - 1 ? "はじめる" : "次へ")
+                Text(page == pages.count - 1 ? LocalizedStringKey("はじめる") : LocalizedStringKey("次へ"))
                     .font(.headline)
                     .frame(maxWidth: .infinity, minHeight: 52)
             }
@@ -113,7 +113,7 @@ struct OnboardingView: View {
 private struct GuidePage {
     let symbol: String
     let tint: Color
-    let title: String
-    let message: String
-    let tip: String
+    let title: LocalizedStringKey
+    let message: LocalizedStringKey
+    let tip: LocalizedStringKey
 }

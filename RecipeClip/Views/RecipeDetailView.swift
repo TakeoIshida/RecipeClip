@@ -25,9 +25,14 @@ struct RecipeDetailView: View {
                     }
                     Text(recipe.title)
                         .font(.title.bold())
-                    Text(recipe.channelName.isEmpty ? "チャンネル未入力" : recipe.channelName)
+                    Text(recipe.channelName.isEmpty ? String(localized: "チャンネル未入力") : recipe.channelName)
                         .foregroundStyle(.secondary)
-                    Text("保存日 \(recipe.createdAt.formatted(date: .abbreviated, time: .omitted))")
+                    Text(
+                        String.localizedStringWithFormat(
+                            String(localized: "recipe.saved_date"),
+                            recipe.createdAt.formatted(date: .abbreviated, time: .omitted)
+                        )
+                    )
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                     Button {
@@ -58,7 +63,12 @@ struct RecipeDetailView: View {
                                         .contentShape(Rectangle())
                                 }
                                 .buttonStyle(.borderless)
-                                .accessibilityLabel("\(ingredient.name)を買い物リストに追加")
+                                .accessibilityLabel(
+                                    String.localizedStringWithFormat(
+                                        String(localized: "shopping.add_ingredient_accessibility"),
+                                        ingredient.name
+                                    )
+                                )
                             }
                             Divider()
                         }
@@ -133,7 +143,11 @@ struct RecipeDetailView: View {
                     Image(systemName: recipe.isFavorite ? "heart.fill" : "heart")
                         .foregroundStyle(recipe.isFavorite ? .red : .primary)
                 }
-                .accessibilityLabel(recipe.isFavorite ? "お気に入りから外す" : "お気に入りに追加")
+                .accessibilityLabel(
+                    recipe.isFavorite
+                        ? String(localized: "お気に入りから外す")
+                        : String(localized: "お気に入りに追加")
+                )
 
                 if let url = URL(string: recipe.videoURL) {
                     ShareLink(item: url, subject: Text(recipe.title)) {
@@ -164,7 +178,7 @@ struct RecipeDetailView: View {
     }
 
     private func detailSection<Content: View>(
-        title: String,
+        title: LocalizedStringKey,
         icon: String,
         @ViewBuilder content: () -> Content
     ) -> some View {
@@ -176,7 +190,7 @@ struct RecipeDetailView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func emptyText(_ text: String) -> some View {
+    private func emptyText(_ text: LocalizedStringKey) -> some View {
         Text(text)
             .foregroundStyle(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -188,13 +202,13 @@ struct RecipeDetailView: View {
         do {
             let result = try ShoppingListService.addIngredients(from: recipe, to: modelContext)
             if result.updatedCount > 0 {
-                shoppingMessage = "\(result.affectedCount)件を買い物リストに登録したよ。すでにあった\(result.updatedCount)件は最新の分量に更新したよ。"
+                shoppingMessage = String.localizedStringWithFormat(String(localized: "shopping.updated_count"), result.affectedCount, result.updatedCount)
             } else {
-                shoppingMessage = "\(result.addedCount)件を買い物リストに追加したよ。"
+                shoppingMessage = String.localizedStringWithFormat(String(localized: "shopping.added_count"), result.addedCount)
             }
         } catch {
             modelContext.rollback()
-            shoppingMessage = "買い物リストに追加できなかったよ。もう一度試してね。"
+            shoppingMessage = String(localized: "買い物リストに追加できなかったよ。もう一度試してね。")
         }
     }
 
@@ -206,13 +220,13 @@ struct RecipeDetailView: View {
                 to: modelContext
             )
             if result.updatedCount > 0 {
-                shoppingMessage = "「\(ingredient.name)」を最新の分量に更新して、未購入へ戻したよ。"
+                shoppingMessage = String.localizedStringWithFormat(String(localized: "shopping.ingredient_updated"), ingredient.name)
             } else {
-                shoppingMessage = "「\(ingredient.name)」を買い物リストに追加したよ。"
+                shoppingMessage = String.localizedStringWithFormat(String(localized: "shopping.ingredient_added"), ingredient.name)
             }
         } catch {
             modelContext.rollback()
-            shoppingMessage = "買い物リストに追加できなかったよ。もう一度試してね。"
+            shoppingMessage = String(localized: "買い物リストに追加できなかったよ。もう一度試してね。")
         }
     }
 }

@@ -72,6 +72,32 @@ final class RecipeAutoFillTests: XCTestCase {
         XCTAssertEqual(result.memo, "弱火で煮込む")
         XCTAssertEqual(result.method, .ruleBased)
     }
+
+    func testEnglishDescriptionParsing() {
+        let description = """
+        Ingredients
+        - 2 cups flour
+        - olive oil 2 tbsp
+        - salt to taste
+
+        Instructions
+        1. Mix the flour and salt.
+        2. Add the olive oil and knead.
+
+        Tips
+        Rest the dough for 10 minutes.
+        """
+
+        let result = RecipeRuleParser.parse(description, fallbackTitle: "Simple Flatbread")
+
+        XCTAssertEqual(result.title, "Simple Flatbread")
+        XCTAssertEqual(result.ingredients.count, 3)
+        XCTAssertEqual(result.ingredients[0], .init(name: "flour", amount: "2 cups"))
+        XCTAssertEqual(result.ingredients[1], .init(name: "olive oil", amount: "2 tbsp"))
+        XCTAssertEqual(result.ingredients[2], .init(name: "salt", amount: "to taste"))
+        XCTAssertEqual(result.steps, ["Mix the flour and salt.", "Add the olive oil and knead."])
+        XCTAssertEqual(result.memo, "Rest the dough for 10 minutes.")
+    }
 }
 
 private final class URLProtocolStub: URLProtocol {

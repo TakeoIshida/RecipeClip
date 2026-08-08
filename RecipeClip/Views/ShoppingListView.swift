@@ -26,18 +26,22 @@ struct ShoppingListView: View {
                 } else {
                     List {
                         if !pendingItems.isEmpty {
-                            Section("未購入 \(pendingItems.count)件") {
+                            Section {
                                 ForEach(pendingItems) { item in
                                     itemRow(item)
                                 }
+                            } header: {
+                                Text(String.localizedStringWithFormat(String(localized: "shopping.pending_count"), pendingItems.count))
                             }
                         }
 
                         if !purchasedItems.isEmpty {
-                            Section("購入済み \(purchasedItems.count)件") {
+                            Section {
                                 ForEach(purchasedItems) { item in
                                     itemRow(item)
                                 }
+                            } header: {
+                                Text(String.localizedStringWithFormat(String(localized: "shopping.purchased_count"), purchasedItems.count))
                             }
                         }
                     }
@@ -92,7 +96,7 @@ struct ShoppingListView: View {
             )) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text(errorMessage ?? "もう一度試してね。")
+                Text(errorMessage ?? String(localized: "もう一度試してね。"))
             }
         }
     }
@@ -131,7 +135,7 @@ struct ShoppingListView: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(accessibilityLabel(for: item))
-        .accessibilityHint(item.isPurchased ? "タップして未購入に戻す" : "タップして購入済みにする")
+        .accessibilityHint(item.isPurchased ? String(localized: "タップして未購入に戻す") : String(localized: "タップして購入済みにする"))
         .swipeActions(edge: .trailing) {
             Button(role: .destructive) {
                 delete(item)
@@ -144,19 +148,23 @@ struct ShoppingListView: View {
     private func accessibilityLabel(for item: ShoppingItem) -> String {
         var parts = [item.name]
         if !item.amount.isEmpty { parts.append(item.amount) }
-        if let source = item.sourceRecipeTitle, !source.isEmpty { parts.append("追加元 \(source)") }
-        parts.append(item.isPurchased ? "購入済み" : "未購入")
+        if let source = item.sourceRecipeTitle, !source.isEmpty {
+            parts.append(
+                String.localizedStringWithFormat(String(localized: "shopping.source_recipe"), source)
+            )
+        }
+        parts.append(item.isPurchased ? String(localized: "購入済み") : String(localized: "未購入"))
         return parts.joined(separator: "、")
     }
 
     private func togglePurchased(_ item: ShoppingItem) {
         item.isPurchased.toggle()
-        saveOrRollback(message: "購入状態を更新できなかったよ。")
+        saveOrRollback(message: String(localized: "購入状態を更新できなかったよ。"))
     }
 
     private func delete(_ item: ShoppingItem) {
         modelContext.delete(item)
-        saveOrRollback(message: "材料を削除できなかったよ。")
+        saveOrRollback(message: String(localized: "材料を削除できなかったよ。"))
     }
 
     private func performCleanup() {
@@ -173,7 +181,7 @@ struct ShoppingListView: View {
             }
         } catch {
             modelContext.rollback()
-            errorMessage = "買い物リストを整理できなかったよ。"
+            errorMessage = String(localized: "買い物リストを整理できなかったよ。")
         }
     }
 
@@ -229,7 +237,7 @@ private struct ManualShoppingItemView: View {
             )) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text(errorMessage ?? "もう一度試してね。")
+                Text(errorMessage ?? String(localized: "もう一度試してね。"))
             }
         }
     }
@@ -251,22 +259,22 @@ private enum CleanupAction {
 
     var title: String {
         switch self {
-        case .purchased: "購入済みを削除する？"
-        case .all: "買い物リストをすべて削除する？"
+        case .purchased: String(localized: "購入済みを削除する？")
+        case .all: String(localized: "買い物リストをすべて削除する？")
         }
     }
 
     var buttonTitle: String {
         switch self {
-        case .purchased: "購入済みを削除"
-        case .all: "すべて削除"
+        case .purchased: String(localized: "購入済みを削除")
+        case .all: String(localized: "すべて削除")
         }
     }
 
     var message: String {
         switch self {
-        case .purchased: "チェック済みの材料をまとめて削除するよ。"
-        case .all: "この操作は取り消せないよ。"
+        case .purchased: String(localized: "チェック済みの材料をまとめて削除するよ。")
+        case .all: String(localized: "この操作は取り消せないよ。")
         }
     }
 }

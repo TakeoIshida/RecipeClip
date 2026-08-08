@@ -60,7 +60,7 @@ struct PrivacyConsentView: View {
         .interactiveDismissDisabled()
     }
 
-    private func consentRow(icon: String, title: String, description: String) -> some View {
+    private func consentRow(icon: String, title: LocalizedStringKey, description: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: 14) {
             Image(systemName: icon)
                 .font(.title2)

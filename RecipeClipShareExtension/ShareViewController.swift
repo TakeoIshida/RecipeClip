@@ -43,9 +43,9 @@ enum ShareError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .cancelled: return "共有をキャンセルしました。"
-        case .noYouTubeURL: return "YouTubeのURLが見つかりませんでした。"
-        case .consentRequired: return "先にレシピクリップ本体を開いて、プライバシーポリシーへ同意してね。"
+        case .cancelled: return String(localized: "共有をキャンセルしました。")
+        case .noYouTubeURL: return String(localized: "YouTubeのURLが見つかりませんでした。")
+        case .consentRequired: return String(localized: "先にレシピクリップ本体を開いて、プライバシーポリシーへ同意してね。")
         }
     }
 }

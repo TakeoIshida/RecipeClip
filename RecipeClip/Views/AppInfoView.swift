@@ -89,7 +89,7 @@ struct PrivacyPolicyView: View {
 
             Section("ポリシーの変更") {
                 Text("機能や利用サービスを変更した場合、このポリシーを更新することがあるよ。")
-                LabeledContent("最終更新日", value: "2026年8月1日")
+                LabeledContent("最終更新日", value: String(localized: "2026年8月1日"))
             }
         }
         .navigationTitle("プライバシーポリシー")

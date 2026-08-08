@@ -95,7 +95,7 @@ struct ShareRootView: View {
                 thumbnailData = metadata.thumbnailData
                 metadataUpdatedAt = .now
             } catch {
-                message = "動画情報を取得できなかったよ。料理名とチャンネル名を入力して保存できるよ。"
+                message = String(localized: "動画情報を取得できなかったよ。料理名とチャンネル名を入力して保存できるよ。")
             }
         } catch {
             message = error.localizedDescription
@@ -121,7 +121,7 @@ struct ShareRootView: View {
             onComplete()
         } catch {
             isSaving = false
-            message = "保存できなかったよ。もう一度試してね。"
+            message = String(localized: "保存できなかったよ。もう一度試してね。")
         }
     }
 }

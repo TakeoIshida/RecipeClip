@@ -55,7 +55,7 @@ struct RecipeListView: View {
             .safeAreaInset(edge: .top, spacing: 0) {
                 Picker("表示", selection: $filter) {
                     ForEach(RecipeFilter.allCases) { item in
-                        Text(item.rawValue).tag(item)
+                        Text(LocalizedStringKey(item.rawValue)).tag(item)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -102,7 +102,10 @@ struct RecipeListView: View {
                 reloadRecipes()
             }
             .confirmationDialog(
-                "「\(recipePendingDeletion?.title ?? "レシピ")」を削除する？",
+                String.localizedStringWithFormat(
+                    String(localized: "recipe.delete_confirmation"),
+                    recipePendingDeletion?.title ?? String(localized: "レシピ")
+                ),
                 isPresented: Binding(
                     get: { recipePendingDeletion != nil },
                     set: { if !$0 { recipePendingDeletion = nil } }
@@ -123,15 +126,15 @@ struct RecipeListView: View {
             )) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text(errorMessage ?? "もう一度試してね。")
+                Text(errorMessage ?? String(localized: "もう一度試してね。"))
             }
         }
     }
 
     private var emptyTitle: String {
-        if !searchText.isEmpty { return "見つからなかったよ" }
-        if filter == .favorites { return "お気に入りはまだないよ" }
-        return "レシピを保存しよう"
+        if !searchText.isEmpty { return String(localized: "見つからなかったよ") }
+        if filter == .favorites { return String(localized: "お気に入りはまだないよ") }
+        return String(localized: "レシピを保存しよう")
     }
 
     private var emptyIcon: String {
@@ -140,8 +143,8 @@ struct RecipeListView: View {
 
     private var emptyDescription: String {
         recipes.isEmpty
-            ? "YouTubeの料理動画を、いつでも見返せるレシピにしよう。"
-            : "検索条件や表示の切り替えを変えてみてね。"
+            ? String(localized: "YouTubeの料理動画を、いつでも見返せるレシピにしよう。")
+            : String(localized: "検索条件や表示の切り替えを変えてみてね。")
     }
 
     private func delete(_ recipe: Recipe) {
@@ -151,7 +154,7 @@ struct RecipeListView: View {
             reloadRecipes()
         } catch {
             modelContext.rollback()
-            errorMessage = "レシピを削除できなかったよ。もう一度試してね。"
+            errorMessage = String(localized: "レシピを削除できなかったよ。もう一度試してね。")
         }
     }
 
@@ -208,7 +211,7 @@ private struct RecipeRow: View {
                             .font(.caption)
                     }
                 }
-                Text(recipe.channelName.isEmpty ? "チャンネル未入力" : recipe.channelName)
+                Text(recipe.channelName.isEmpty ? String(localized: "チャンネル未入力") : recipe.channelName)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)

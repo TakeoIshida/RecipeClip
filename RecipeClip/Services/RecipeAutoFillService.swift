@@ -115,7 +115,7 @@ enum RecipeRuleParser {
 
     private static func isStepHeading(_ line: String) -> Bool {
         let value = normalizedHeading(line)
-        return ["作り方", "作りかた", "手順", "調理手順", "つくり方", "recipe", "directions"]
+        return ["作り方", "作りかた", "手順", "調理手順", "つくり方", "recipe", "directions", "instructions", "method", "steps", "preparation"]
             .contains(where: { value == $0 || value.hasPrefix($0 + "（") || value.hasPrefix($0 + "(") })
     }
 
@@ -131,12 +131,15 @@ enum RecipeRuleParser {
             || lowercased.hasPrefix("#")
             || lowercased.contains("チャンネル登録")
             || lowercased.contains("subscribe")
+            || lowercased.contains("follow me")
+            || lowercased.contains("instagram.com")
+            || lowercased.contains("tiktok.com")
             || lowercased.contains("sns")
     }
 
     private static func looksLikeIngredient(_ line: String) -> Bool {
         line.range(
-            of: #"\d+(?:[.,]\d+)?\s*(?:g|kg|ml|l|cc|個|本|枚|杯|束|袋|缶|パック|大さじ|小さじ|適量|少々)"#,
+            of: #"(?:\d+(?:[.,/]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞])\s*(?:g|kg|mg|ml|l|cc|oz|lb|lbs|cup|cups|tbsp|tablespoons?|tsp|teaspoons?|cloves?|cans?|packs?|pieces?|個|本|枚|杯|束|袋|缶|パック|大さじ|小さじ)|\b(?:to taste|as needed|a pinch)\b"#,
             options: [.regularExpression, .caseInsensitive]
         ) != nil
     }
@@ -159,8 +162,16 @@ enum RecipeRuleParser {
             }
         }
 
+        let amountFirstPattern = #"^((?:\d+(?:[.,/]\d+)?|[¼½¾⅓⅔⅛⅜⅝⅞])\s*(?:g|kg|mg|ml|l|cc|oz|lb|lbs|cup|cups|tbsp|tablespoons?|tsp|teaspoons?|clove|cloves|can|cans|pack|packs|piece|pieces))\s+(.+)$"#
+        if let expression = try? NSRegularExpression(pattern: amountFirstPattern, options: .caseInsensitive),
+           let match = expression.firstMatch(in: clean, range: NSRange(clean.startIndex..., in: clean)),
+           let amountRange = Range(match.range(at: 1), in: clean),
+           let nameRange = Range(match.range(at: 2), in: clean) {
+            return .init(name: String(clean[nameRange]), amount: String(clean[amountRange]))
+        }
+
         if let range = clean.range(
-            of: #"\s{2,}|\s+(?=\d|適量|少々|お好み)"#,
+            of: #"\s{2,}|\s+(?=\d|[¼½¾⅓⅔⅛⅜⅝⅞]|適量|少々|お好み|to taste|as needed|a pinch)"#,
             options: .regularExpression
         ) {
             let name = String(clean[..<range.lowerBound]).trimmingCharacters(in: .whitespaces)
@@ -218,14 +229,14 @@ private enum AppleIntelligenceRecipeExtractor {
 
     static func extract(from description: String, fallbackTitle: String) async throws -> ExtractedRecipeData? {
         let model = SystemLanguageModel.default
-        guard model.isAvailable, model.supportsLocale(Locale(identifier: "ja_JP")) else { return nil }
+        let usesJapanese = Locale.current.language.languageCode?.identifier == "ja"
+        let outputLocale = Locale(identifier: usesJapanese ? "ja_JP" : "en_US")
+        guard model.isAvailable, model.supportsLocale(outputLocale) else { return nil }
 
-        let session = LanguageModelSession(instructions: """
-            あなたは料理動画の説明欄をレシピへ変換します。
-            入力に明記されていない材料、分量、手順を推測して追加しないでください。
-            URL、宣伝、ハッシュタグ、チャプター時刻は除外してください。
-            出力は日本語にしてください。
-            """)
+        let instructions = usesJapanese
+            ? "料理動画の説明欄をレシピへ変換します。入力にない材料、分量、手順は追加せず、URL、宣伝、ハッシュタグ、チャプター時刻を除外し、日本語で出力してください。"
+            : "Convert a cooking-video description into a recipe. Never invent ingredients, amounts, or directions. Exclude URLs, promotions, hashtags, and chapter timestamps. Respond in English."
+        let session = LanguageModelSession(instructions: instructions)
         let response = try await session.respond(
             to: """
             動画タイトル: \(fallbackTitle)

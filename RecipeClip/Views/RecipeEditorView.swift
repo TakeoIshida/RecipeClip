@@ -257,7 +257,7 @@ struct RecipeEditorView: View {
         .alert("保存できなかったよ", isPresented: $showsSaveError) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text(statusMessage ?? "入力内容を確認してね。")
+            Text(statusMessage ?? String(localized: "入力内容を確認してね。"))
         }
     }
 
@@ -295,7 +295,7 @@ struct RecipeEditorView: View {
     @MainActor
     private func loadMetadata() async {
         isLoading = true
-        statusMessage = "動画情報を取得しているよ…"
+        statusMessage = String(localized: "動画情報を取得しているよ…")
         defer { isLoading = false }
 
         do {
@@ -307,7 +307,7 @@ struct RecipeEditorView: View {
             thumbnailData = metadata.thumbnailData
             metadataUpdatedAt = .now
             lastAutomaticallyLoadedURL = metadata.canonicalURL.absoluteString
-            statusMessage = "動画情報を取得したよ。"
+            statusMessage = String(localized: "動画情報を取得したよ。")
         } catch {
             if let canonicalURL = try? YouTubeURLNormalizer.normalize(videoURL) {
                 videoURL = canonicalURL.absoluteString
@@ -331,7 +331,7 @@ struct RecipeEditorView: View {
         }
 
         lastAutomaticallyLoadedURL = canonicalURL.absoluteString
-        statusMessage = "リンクを確認しているよ…"
+        statusMessage = String(localized: "リンクを確認しているよ…")
         await loadMetadata()
     }
 
@@ -368,7 +368,7 @@ struct RecipeEditorView: View {
     @MainActor
     private func autoFillRecipe() async {
         isAutoFilling = true
-        statusMessage = "貼り付けた説明欄を整理しているよ…"
+        statusMessage = String(localized: "貼り付けた説明欄を整理しているよ…")
         defer { isAutoFilling = false }
 
         guard let canonicalURL = try? YouTubeURLNormalizer.normalize(videoURL) else {
@@ -388,12 +388,12 @@ struct RecipeEditorView: View {
 
         let description = sourceDescription.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !description.isEmpty else {
-            statusMessage = "YouTubeの説明欄を貼り付けてから、もう一度押してね。"
+            statusMessage = String(localized: "YouTubeの説明欄を貼り付けてから、もう一度押してね。")
             return
         }
         lastAutomaticallyParsedDescription = description
 
-        statusMessage = "材料と作り方を整理しているよ…"
+        statusMessage = String(localized: "材料と作り方を整理しているよ…")
         let extracted = await RecipeAutomaticExtractor.extract(
             from: description,
             fallbackTitle: title
@@ -409,13 +409,13 @@ struct RecipeEditorView: View {
         if !extracted.memo.isEmpty { memo = extracted.memo }
 
         if ingredients.isEmpty && cookingSteps.isEmpty {
-            statusMessage = "説明欄に材料や手順を見つけられなかったよ。必要なところだけ手入力してね。"
+            statusMessage = String(localized: "説明欄に材料や手順を見つけられなかったよ。必要なところだけ手入力してね。")
         } else {
             switch extracted.method {
             case .appleIntelligence:
-                statusMessage = "Apple Intelligenceでレシピを自動作成したよ。内容を確認して保存してね。"
+                statusMessage = String(localized: "Apple Intelligenceでレシピを自動作成したよ。内容を確認して保存してね。")
             case .ruleBased:
-                statusMessage = "説明欄から無料でレシピを自動作成したよ。内容を確認して保存してね。"
+                statusMessage = String(localized: "説明欄から無料でレシピを自動作成したよ。内容を確認して保存してね。")
             }
         }
     }

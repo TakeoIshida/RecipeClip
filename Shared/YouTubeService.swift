@@ -17,13 +17,13 @@ enum YouTubeError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "URLを確認してね。"
+            return String(localized: "URLを確認してね。")
         case .unsupportedURL:
-            return "YouTubeの動画URLを入力してね。"
+            return String(localized: "YouTubeの動画URLを入力してね。")
         case .missingVideoID:
-            return "動画IDを読み取れなかったよ。"
+            return String(localized: "動画IDを読み取れなかったよ。")
         case .invalidResponse:
-            return "動画情報を取得できなかったよ。料理名とチャンネル名を手入力できるよ。"
+            return String(localized: "動画情報を取得できなかったよ。料理名とチャンネル名を手入力できるよ。")
         }
     }
 }
