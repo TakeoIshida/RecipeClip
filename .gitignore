@@ -3,4 +3,5 @@ build/
 *.xcuserstate
 xcuserdata/
 .DS_Store
+AppStore/Screenshots/output/
 Config/Local.xcconfig
