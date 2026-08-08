@@ -59,15 +59,12 @@ jobs:
 
       - name: Run tests
         run: |
-          DESTINATION_ID=$(xcodebuild \
-            -project RecipeClip.xcodeproj \
-            -scheme RecipeClip \
-            -showdestinations | \
-            sed -n 's/.*platform:iOS Simulator,.*id:\([^,]*\),.*name:iPhone.*/\1/p' | \
+          DESTINATION_ID=$(xcrun simctl list devices available | \
+            sed -n 's/.*iPhone.*(\([0-9A-Fa-f-]\{36\}\)).*/\1/p' | \
             head -1 | xargs)
           if [ -z "$DESTINATION_ID" ]; then
             echo "An available iPhone simulator was not found."
-            xcodebuild -project RecipeClip.xcodeproj -scheme RecipeClip -showdestinations
+            xcrun simctl list devices available
             exit 1
           fi
           xcodebuild test \
