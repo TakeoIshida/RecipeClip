@@ -90,7 +90,7 @@ jobs:
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
             -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" \
             DEVELOPMENT_TEAM=JS3245KG7Q \
-            CODE_SIGN_IDENTITY='Apple Distribution'
+            CODE_SIGNING_ALLOWED=NO
 
       - name: Export IPA
         env:
