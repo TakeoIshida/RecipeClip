@@ -2,7 +2,7 @@
 
 ## App Name
 
-RecipeClip
+RecipeClip - Video Recipes
 
 ## Subtitle
 
