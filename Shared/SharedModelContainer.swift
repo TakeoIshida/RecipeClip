@@ -20,16 +20,18 @@ enum SharedModelContainer {
 
     static var hasAcceptedCurrentPrivacyPolicy: Bool {
         let defaultsVersion = sharedDefaults?.integer(forKey: acceptedPrivacyPolicyVersionKey) ?? 0
+        let localDefaultsVersion = UserDefaults.standard.integer(forKey: acceptedPrivacyPolicyVersionKey)
         let markerVersion = privacyConsentMarkerURL
             .flatMap { try? Data(contentsOf: $0) }
             .flatMap { String(data: $0, encoding: .utf8) }
             .flatMap(Int.init) ?? 0
 
-        return max(defaultsVersion, markerVersion) >= currentPrivacyPolicyVersion
+        return max(defaultsVersion, localDefaultsVersion, markerVersion) >= currentPrivacyPolicyVersion
     }
 
     static func acceptCurrentPrivacyPolicy() {
         sharedDefaults?.set(currentPrivacyPolicyVersion, forKey: acceptedPrivacyPolicyVersionKey)
+        UserDefaults.standard.set(currentPrivacyPolicyVersion, forKey: acceptedPrivacyPolicyVersionKey)
 
         guard let markerURL = privacyConsentMarkerURL,
               let marker = String(currentPrivacyPolicyVersion).data(using: .utf8) else {
@@ -38,9 +40,8 @@ enum SharedModelContainer {
         try? marker.write(to: markerURL, options: .atomic)
     }
 
-    /// Older builds only persisted consent in App Group UserDefaults. Rewriting it
-    /// on app launch also creates a file marker that the Share Extension can read
-    /// reliably across process boundaries.
+    /// Rewrites consent from either the app's local defaults or App Group defaults.
+    /// The file marker gives the Share Extension a second cross-process source.
     static func repairPrivacyPolicyConsentSharingIfNeeded() {
         guard hasAcceptedCurrentPrivacyPolicy else { return }
         acceptCurrentPrivacyPolicy()

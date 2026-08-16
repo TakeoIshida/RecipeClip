@@ -29,4 +29,28 @@ final class YouTubeURLNormalizerTests: XCTestCase {
             XCTAssertEqual($0 as? YouTubeError, .missingVideoID)
         }
     }
+
+    func testShareDraftCanSaveWithManualTitleAndSharedURL() {
+        XCTAssertTrue(
+            ShareDraftValidator.canSave(
+                title: "麻婆豆腐",
+                videoURL: "https://youtu.be/abc_123-XYZ"
+            )
+        )
+    }
+
+    func testShareDraftRequiresBothTitleAndValidYouTubeURL() {
+        XCTAssertFalse(
+            ShareDraftValidator.canSave(
+                title: "   ",
+                videoURL: "https://youtu.be/abc_123-XYZ"
+            )
+        )
+        XCTAssertFalse(
+            ShareDraftValidator.canSave(
+                title: "麻婆豆腐",
+                videoURL: "https://example.com/video"
+            )
+        )
+    }
 }

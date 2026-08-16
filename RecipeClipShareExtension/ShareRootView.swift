@@ -71,8 +71,7 @@ struct ShareRootView: View {
     }
 
     private var canSave: Bool {
-        !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            && (try? YouTubeURLNormalizer.normalize(videoURL)) != nil
+        ShareDraftValidator.canSave(title: title, videoURL: videoURL)
     }
 
     @MainActor
@@ -80,12 +79,14 @@ struct ShareRootView: View {
         defer { isLoading = false }
 
         do {
-            guard SharedModelContainer.hasAcceptedCurrentPrivacyPolicy else {
-                throw ShareError.consentRequired
-            }
             let sharedValue = try await ShareItemLoader.youtubeURL(from: extensionContext)
             let canonicalURL = try YouTubeURLNormalizer.normalize(sharedValue)
             videoURL = canonicalURL.absoluteString
+
+            guard SharedModelContainer.hasAcceptedCurrentPrivacyPolicy else {
+                message = String(localized: "プライバシー同意を確認できないため動画情報の自動取得は行いません。料理名を入力すると、端末内に下書き保存できます。")
+                return
+            }
 
             do {
                 let metadata = try await YouTubeService().fetchMetadata(for: sharedValue)

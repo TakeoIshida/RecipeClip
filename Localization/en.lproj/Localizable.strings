@@ -138,7 +138,7 @@
 "説明欄から無料でレシピを自動作成したよ。内容を確認して保存してね。" = "The recipe was organized on device. Review it before saving.";
 "説明欄に材料や手順を見つけられなかったよ。必要なところだけ手入力してね。" = "No ingredients or directions were found. Add anything missing manually.";
 "説明欄の解析は端末内" = "Descriptions Are Processed on Device";
-"先にレシピクリップ本体を開いて、プライバシーポリシーへ同意してね。" = "Open RecipeClip first and agree to the Privacy Policy.";
+"プライバシー同意を確認できないため動画情報の自動取得は行いません。料理名を入力すると、端末内に下書き保存できます。" = "RecipeClip could not verify privacy consent, so it will not fetch video information automatically. Enter a recipe name to save a draft on this device.";
 "前へ" = "Back";
 "操作を完了できなかったよ" = "Couldn’t complete the action";
 "大切なデータはアプリ情報からバックアップしてね。" = "Back up important data from App Info.";

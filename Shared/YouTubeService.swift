@@ -76,6 +76,13 @@ enum YouTubeURLNormalizer {
     }
 }
 
+enum ShareDraftValidator {
+    static func canSave(title: String, videoURL: String) -> Bool {
+        !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && (try? YouTubeURLNormalizer.normalize(videoURL)) != nil
+    }
+}
+
 protocol YouTubeMetadataFetching {
     func fetchMetadata(for rawURL: String) async throws -> YouTubeMetadata
 }
