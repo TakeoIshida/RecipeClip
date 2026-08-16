@@ -50,5 +50,5 @@ recipe,cooking,video,shopping list,ingredients,meal planner,cookbook,kitchen,not
 
 ## Version
 
-- Version: 1.0
-- Build: 2
+- Version: 1.0.1
+- Build: 3
