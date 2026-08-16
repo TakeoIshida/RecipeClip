@@ -69,6 +69,7 @@
 "ファイルを書き出したよ。大切に保管してね。" = "Your backup was exported. Keep it somewhere safe.";
 "プライバシー" = "Privacy";
 "プライバシーポリシー" = "Privacy Policy";
+"プライバシーポリシーを読む" = "Read the Privacy Policy";
 "ポイント" = "Tips";
 "ポリシーの変更" = "Policy Changes";
 "まだ保存していない変更があるよ。" = "You have unsaved changes.";
@@ -138,7 +139,7 @@
 "説明欄から無料でレシピを自動作成したよ。内容を確認して保存してね。" = "The recipe was organized on device. Review it before saving.";
 "説明欄に材料や手順を見つけられなかったよ。必要なところだけ手入力してね。" = "No ingredients or directions were found. Add anything missing manually.";
 "説明欄の解析は端末内" = "Descriptions Are Processed on Device";
-"プライバシー同意を確認できないため動画情報の自動取得は行いません。料理名を入力すると、端末内に下書き保存できます。" = "RecipeClip could not verify privacy consent, so it will not fetch video information automatically. Enter a recipe name to save a draft on this device.";
+"プライバシー同意を確認できませんでした。すでに同意済みの場合も、下のボタンで再確認すると動画情報を取得できます。" = "RecipeClip could not verify your privacy consent. Even if you already agreed, confirm it again below to fetch video information.";
 "前へ" = "Back";
 "操作を完了できなかったよ" = "Couldn’t complete the action";
 "大切なデータはアプリ情報からバックアップしてね。" = "Back up important data from App Info.";
@@ -160,7 +161,10 @@
 "動画情報を取得できなかったよ。手入力で続けられるよ。" = "Couldn’t fetch video information. You can continue by entering it manually.";
 "動画情報を取得できなかったよ。料理名とチャンネル名を手入力できるよ。" = "Couldn’t fetch video information. You can enter the recipe and channel names manually.";
 "動画情報を取得できなかったよ。料理名とチャンネル名を入力して保存できるよ。" = "Couldn’t fetch video information. Enter the recipe and channel names to continue.";
+"動画情報を取得できませんでした。料理名とチャンネル名を入力して保存できます。" = "Video information could not be fetched. Enter the recipe and channel names to save it.";
 "動画情報を取得中…" = "Fetching video information…";
+"動画情報をYouTubeから取得する前に、プライバシーポリシーとYouTube利用規約への同意が必要です。" = "You must agree to the Privacy Policy and YouTube Terms of Service before fetching video information from YouTube.";
+"同意して動画情報を取得" = "Agree and Fetch Video Information";
 "同意してはじめる" = "Agree and Continue";
 "読み込めなかったよ" = "Couldn’t Read Backup";
 "入力中の内容を破棄する？" = "Discard Your Changes?";
@@ -184,6 +188,9 @@
 "保存する情報" = "Information Stored";
 "保存できなかったよ" = "Couldn’t Save";
 "保存できなかったよ。もう一度試してね。" = "Couldn’t save. Please try again.";
+"アプリと共有する保存場所を開けませんでした。レシピクリップ本体を一度開いてから、もう一度試してください。" = "The shared storage could not be opened. Open RecipeClip once, then try again.";
+"共有したレシピを読み込めませんでした" = "Couldn’t Import the Shared Recipe";
+"下書き保存した内容は、レシピクリップ本体を開くとレシピ一覧に取り込まれます。" = "Saved drafts are imported into your recipe list when you open RecipeClip.";
 "補足" = "Notes";
 "未購入" = "To Buy";
 "未編集" = "Draft";

@@ -2,7 +2,10 @@ import SwiftData
 import SwiftUI
 
 struct AppRootView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @Query private var shoppingItems: [ShoppingItem]
+    @State private var importErrorMessage: String?
     @State private var launchGate: LaunchGate? = {
         if !AppConsent.hasAcceptedCurrentPolicy { return .privacy }
         if !OnboardingState.isCompleted { return .onboarding }
@@ -32,12 +35,36 @@ struct AppRootView: View {
                 PrivacyConsentView {
                     AppConsent.acceptCurrentPolicy()
                     launchGate = OnboardingState.isCompleted ? nil : .onboarding
+                    importPendingSharesIfAllowed()
                 }
             case .onboarding:
                 OnboardingView {
                     launchGate = nil
                 }
             }
+        }
+        .task { importPendingSharesIfAllowed() }
+        .onChange(of: scenePhase) { _, newPhase in
+            guard newPhase == .active else { return }
+            SharedModelContainer.repairPrivacyPolicyConsentSharingIfNeeded()
+            importPendingSharesIfAllowed()
+        }
+        .alert("共有したレシピを読み込めませんでした", isPresented: Binding(
+            get: { importErrorMessage != nil },
+            set: { if !$0 { importErrorMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(importErrorMessage ?? "")
+        }
+    }
+
+    private func importPendingSharesIfAllowed() {
+        guard AppConsent.hasAcceptedCurrentPolicy else { return }
+        do {
+            try PendingShareDraftStore.importPendingDrafts(into: modelContext)
+        } catch {
+            importErrorMessage = error.localizedDescription
         }
     }
 }

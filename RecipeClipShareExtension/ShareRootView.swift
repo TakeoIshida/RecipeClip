@@ -1,10 +1,7 @@
-import SwiftData
 import SwiftUI
 import UniformTypeIdentifiers
 
 struct ShareRootView: View {
-    @Environment(\.modelContext) private var modelContext
-
     let extensionContext: NSExtensionContext?
     let onCancel: () -> Void
     let onComplete: () -> Void
@@ -18,6 +15,7 @@ struct ShareRootView: View {
     @State private var isLoading = true
     @State private var isSaving = false
     @State private var message: String?
+    @State private var hasPrivacyConsent = SharedModelContainer.hasAcceptedCurrentPrivacyPolicy
 
     var body: some View {
         NavigationStack {
@@ -53,6 +51,24 @@ struct ShareRootView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+
+                    if !hasPrivacyConsent {
+                        Section("プライバシー") {
+                            Text("動画情報をYouTubeから取得する前に、プライバシーポリシーとYouTube利用規約への同意が必要です。")
+                            Link("プライバシーポリシーを読む", destination: SharedModelContainer.privacyPolicyURL)
+                            Link("YouTube 利用規約", destination: URL(string: "https://www.youtube.com/t/terms")!)
+                            Button("同意して動画情報を取得") {
+                                Task { await acceptPrivacyAndFetchMetadata() }
+                            }
+                            .disabled(isLoading)
+                        }
+                    }
+
+                    Section {
+                        Label("下書き保存した内容は、レシピクリップ本体を開くとレシピ一覧に取り込まれます。", systemImage: "square.and.arrow.down")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
             .navigationTitle("レシピに保存")
@@ -84,45 +100,59 @@ struct ShareRootView: View {
             videoURL = canonicalURL.absoluteString
 
             guard SharedModelContainer.hasAcceptedCurrentPrivacyPolicy else {
-                message = String(localized: "プライバシー同意を確認できないため動画情報の自動取得は行いません。料理名を入力すると、端末内に下書き保存できます。")
+                hasPrivacyConsent = false
+                message = String(localized: "プライバシー同意を確認できませんでした。すでに同意済みの場合も、下のボタンで再確認すると動画情報を取得できます。")
                 return
             }
-
-            do {
-                let metadata = try await YouTubeService().fetchMetadata(for: sharedValue)
-                title = metadata.title
-                channelName = metadata.channelName
-                thumbnailURL = metadata.thumbnailURL?.absoluteString
-                thumbnailData = metadata.thumbnailData
-                metadataUpdatedAt = .now
-            } catch {
-                message = String(localized: "動画情報を取得できなかったよ。料理名とチャンネル名を入力して保存できるよ。")
-            }
+            hasPrivacyConsent = true
+            await fetchMetadata(for: sharedValue)
         } catch {
             message = error.localizedDescription
+        }
+    }
+
+    @MainActor
+    private func acceptPrivacyAndFetchMetadata() async {
+        SharedModelContainer.acceptCurrentPrivacyPolicy()
+        hasPrivacyConsent = true
+        message = nil
+        isLoading = true
+        defer { isLoading = false }
+        await fetchMetadata(for: videoURL)
+    }
+
+    @MainActor
+    private func fetchMetadata(for sharedValue: String) async {
+        do {
+            let metadata = try await YouTubeService().fetchMetadata(for: sharedValue)
+            title = metadata.title
+            channelName = metadata.channelName
+            thumbnailURL = metadata.thumbnailURL?.absoluteString
+            thumbnailData = metadata.thumbnailData
+            metadataUpdatedAt = .now
+        } catch {
+            message = String(localized: "動画情報を取得できませんでした。料理名とチャンネル名を入力して保存できます。")
         }
     }
 
     private func save() {
         guard let canonicalURL = try? YouTubeURLNormalizer.normalize(videoURL) else { return }
         isSaving = true
-        let recipe = Recipe(
+        let draft = PendingShareDraft(
             title: title.trimmingCharacters(in: .whitespacesAndNewlines),
             videoURL: canonicalURL.absoluteString,
             channelName: channelName.trimmingCharacters(in: .whitespacesAndNewlines),
             thumbnailURL: thumbnailURL,
             thumbnailData: thumbnailData,
-            isDraft: true,
             metadataUpdatedAt: metadataUpdatedAt
         )
-        modelContext.insert(recipe)
 
         do {
-            try modelContext.save()
+            try PendingShareDraftStore.enqueue(draft)
             onComplete()
         } catch {
             isSaving = false
-            message = String(localized: "保存できなかったよ。もう一度試してね。")
+            message = error.localizedDescription
         }
     }
 }

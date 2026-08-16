@@ -41,4 +41,36 @@ final class RecipeModelTests: XCTestCase {
         XCTAssertTrue(RecipeFiltering.matches(recipe, query: "じゃが"))
         XCTAssertFalse(RecipeFiltering.matches(recipe, query: "パスタ"))
     }
+
+    func testPendingShareDraftIsImportedIntoRecipeStore() throws {
+        let temporaryContainerURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: temporaryContainerURL, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: temporaryContainerURL) }
+
+        let draft = PendingShareDraft(
+            title: "麻婆豆腐",
+            videoURL: "https://www.youtube.com/watch?v=abc_123-XYZ",
+            channelName: "山野辺"
+        )
+        try PendingShareDraftStore.enqueue(draft, in: temporaryContainerURL)
+
+        let container = try SharedModelContainer.make(inMemory: true)
+        let context = ModelContext(container)
+        XCTAssertEqual(
+            try PendingShareDraftStore.importPendingDrafts(into: context, from: temporaryContainerURL),
+            1
+        )
+
+        let recipes = try context.fetch(FetchDescriptor<Recipe>())
+        XCTAssertEqual(recipes.count, 1)
+        XCTAssertEqual(recipes[0].id, draft.id)
+        XCTAssertEqual(recipes[0].title, "麻婆豆腐")
+        XCTAssertEqual(recipes[0].channelName, "山野辺")
+        XCTAssertTrue(recipes[0].isDraft)
+        XCTAssertEqual(
+            try PendingShareDraftStore.importPendingDrafts(into: context, from: temporaryContainerURL),
+            0
+        )
+    }
 }
