@@ -68,6 +68,21 @@ jobs:
           echo -n "$SHARE_PROVISION_PROFILE_BASE64" | base64 --decode \
             -o "$HOME/Library/MobileDevice/Provisioning Profiles/RecipeClip_Share_AppStore.mobileprovision"
 
+      - name: Verify provisioning profile app groups
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED_GROUP="group.com.ishidatakeo.RecipeClip"
+          for PROFILE in \
+            "$HOME/Library/MobileDevice/Provisioning Profiles/RecipeClip_AppStore.mobileprovision" \
+            "$HOME/Library/MobileDevice/Provisioning Profiles/RecipeClip_Share_AppStore.mobileprovision"
+          do
+            PROFILE_PLIST="$RUNNER_TEMP/$(basename "$PROFILE").plist"
+            security cms -D -i "$PROFILE" > "$PROFILE_PLIST"
+            /usr/libexec/PlistBuddy -c 'Print :Entitlements:com.apple.security.application-groups' "$PROFILE_PLIST" \
+              | grep -F "$EXPECTED_GROUP"
+          done
+
       - name: Run tests
         run: |
           DESTINATION_ID=$(xcrun simctl list devices available | \
@@ -100,8 +115,7 @@ jobs:
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
             -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" \
-            DEVELOPMENT_TEAM=JS3245KG7Q \
-            CODE_SIGNING_ALLOWED=NO
+            DEVELOPMENT_TEAM=JS3245KG7Q
 
       - name: Export IPA
         run: |
@@ -109,6 +123,25 @@ jobs:
             -archivePath "$RUNNER_TEMP/RecipeClip.xcarchive" \
             -exportOptionsPlist ExportOptions.plist \
             -exportPath "$RUNNER_TEMP/output"
+
+      - name: Verify exported app group entitlements
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED_GROUP="group.com.ishidatakeo.RecipeClip"
+          IPA_PATH=$(find "$RUNNER_TEMP/output" -maxdepth 1 -name '*.ipa' -print -quit)
+          VERIFY_DIR="$RUNNER_TEMP/verify-ipa"
+          unzip -q "$IPA_PATH" -d "$VERIFY_DIR"
+          APP_PATH=$(find "$VERIFY_DIR/Payload" -maxdepth 1 -name '*.app' -print -quit)
+          SHARE_PATH=$(find "$APP_PATH/PlugIns" -maxdepth 1 -name '*.appex' -print -quit)
+
+          for BINARY_PATH in "$APP_PATH" "$SHARE_PATH"
+          do
+            ENTITLEMENTS_PATH="$RUNNER_TEMP/$(basename "$BINARY_PATH").entitlements.plist"
+            codesign -d --entitlements :- "$BINARY_PATH" > "$ENTITLEMENTS_PATH" 2>/dev/null
+            /usr/libexec/PlistBuddy -c 'Print :com.apple.security.application-groups' "$ENTITLEMENTS_PATH" \
+              | grep -F "$EXPECTED_GROUP"
+          done
 
       - name: Upload to App Store Connect
         env:

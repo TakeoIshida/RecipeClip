@@ -148,7 +148,9 @@ enum PendingShareDraftStore {
     @discardableResult
     static func importPendingDrafts(into modelContext: ModelContext) throws -> Int {
         guard let containerURL = SharedModelContainer.appGroupContainerURL else {
-            throw PendingShareDraftStoreError.appGroupUnavailable
+            // The Share Extension reports this problem when the user actually
+            // saves. Avoid showing an import alert on every main-app launch.
+            return 0
         }
         return try importPendingDrafts(into: modelContext, from: containerURL)
     }
