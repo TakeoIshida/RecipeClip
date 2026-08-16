@@ -7,6 +7,8 @@ struct RecipeClipApp: App {
     private let modelContainer: ModelContainer
 
     init() {
+        SharedModelContainer.repairPrivacyPolicyConsentSharingIfNeeded()
+
         do {
             modelContainer = try SharedModelContainer.make(
                 inMemory: AppStoreScreenshotScene.current != nil

@@ -6,17 +6,44 @@ enum SharedModelContainer {
     static let currentPrivacyPolicyVersion = 1
     private static let storeName = "RecipeClip.store"
     private static let acceptedPrivacyPolicyVersionKey = "acceptedPrivacyPolicyVersion"
+    private static let privacyConsentMarkerName = ".privacy-consent-version"
 
-    private static var sharedDefaults: UserDefaults {
-        UserDefaults(suiteName: appGroupIdentifier) ?? .standard
+    private static var sharedDefaults: UserDefaults? {
+        UserDefaults(suiteName: appGroupIdentifier)
+    }
+
+    private static var privacyConsentMarkerURL: URL? {
+        FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)?
+            .appendingPathComponent(privacyConsentMarkerName, isDirectory: false)
     }
 
     static var hasAcceptedCurrentPrivacyPolicy: Bool {
-        sharedDefaults.integer(forKey: acceptedPrivacyPolicyVersionKey) >= currentPrivacyPolicyVersion
+        let defaultsVersion = sharedDefaults?.integer(forKey: acceptedPrivacyPolicyVersionKey) ?? 0
+        let markerVersion = privacyConsentMarkerURL
+            .flatMap { try? Data(contentsOf: $0) }
+            .flatMap { String(data: $0, encoding: .utf8) }
+            .flatMap(Int.init) ?? 0
+
+        return max(defaultsVersion, markerVersion) >= currentPrivacyPolicyVersion
     }
 
     static func acceptCurrentPrivacyPolicy() {
-        sharedDefaults.set(currentPrivacyPolicyVersion, forKey: acceptedPrivacyPolicyVersionKey)
+        sharedDefaults?.set(currentPrivacyPolicyVersion, forKey: acceptedPrivacyPolicyVersionKey)
+
+        guard let markerURL = privacyConsentMarkerURL,
+              let marker = String(currentPrivacyPolicyVersion).data(using: .utf8) else {
+            return
+        }
+        try? marker.write(to: markerURL, options: .atomic)
+    }
+
+    /// Older builds only persisted consent in App Group UserDefaults. Rewriting it
+    /// on app launch also creates a file marker that the Share Extension can read
+    /// reliably across process boundaries.
+    static func repairPrivacyPolicyConsentSharingIfNeeded() {
+        guard hasAcceptedCurrentPrivacyPolicy else { return }
+        acceptCurrentPrivacyPolicy()
     }
 
     static var schema: Schema {
