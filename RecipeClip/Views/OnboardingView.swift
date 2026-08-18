@@ -22,7 +22,7 @@ struct OnboardingView: View {
             symbol: "square.and.arrow.up",
             tint: .red,
             title: "YouTubeからすぐ保存",
-            message: "料理動画の共有ボタンを押して「レシピクリップ」を選ぶだけ。動画名とチャンネルを下書き保存できるよ。",
+            message: "料理動画の共有ボタンを押して「動画レシピ帳」を選ぶだけ。動画名とチャンネルを下書き保存できるよ。",
             tip: "共有先に見当たらないときは「その他」から追加してね。"
         ),
         GuidePage(

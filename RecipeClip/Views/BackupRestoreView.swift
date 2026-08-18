@@ -108,7 +108,7 @@ struct BackupRestoreView: View {
     private var defaultFilename: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return "レシピクリップ_\(formatter.string(from: .now))"
+        return "動画レシピ帳_\(formatter.string(from: .now))"
     }
 
     private func prepareExport() {

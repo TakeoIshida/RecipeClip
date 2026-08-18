@@ -3,7 +3,7 @@ import SwiftUI
 struct AppInfoView: View {
     var body: some View {
         List {
-            Section("レシピクリップについて") {
+            Section("動画レシピ帳について") {
                 Label("YouTubeの料理動画を、自分用のレシピとして端末に保存するアプリだよ。", systemImage: "fork.knife")
                 LabeledContent("バージョン", value: versionText)
             }

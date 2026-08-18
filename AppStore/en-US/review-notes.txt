@@ -1,4 +1,4 @@
-RecipeClip lets users save YouTube cooking-video links and organize recipe information for personal use.
+Video Recipe Book lets users save YouTube cooking-video links and organize recipe information for personal use.
 
 No account or sign-in is required. The app does not include advertising, analytics, or tracking. Recipe data and shopping-list data are stored on the device. Users manually paste video descriptions; those descriptions are processed on device and are not retained.
 

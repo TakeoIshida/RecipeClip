@@ -2,7 +2,7 @@
 
 ## App Name
 
-RecipeClip - Video Recipes
+Video Recipe Book
 
 ## Subtitle
 
@@ -14,10 +14,10 @@ Turn cooking videos into organized recipes, shopping lists, and step-by-step coo
 
 ## Description
 
-RecipeClip turns cooking videos you find on YouTube into practical recipes you can save and use later.
+Video Recipe Book turns cooking videos you find on YouTube into practical recipes you can save and use later.
 
 SAVE FROM YOUTUBE
-Choose RecipeClip from the YouTube share sheet to save the video title, channel, and link as a draft.
+Choose Video Recipe Book from the YouTube share sheet to save the video title, channel, and link as a draft.
 
 ORGANIZE VIDEO DESCRIPTIONS
 Copy and paste a video description to organize its ingredients, amounts, directions, and notes. Processing happens on your device, and you can edit anything that was not detected.
@@ -31,7 +31,7 @@ Cooking Mode shows one direction at a time in large text, making it easy to foll
 ON-DEVICE STORAGE AND BACKUP
 No account is required. Recipes and shopping items are stored on your device, with file-based backup and restore when you need it.
 
-RecipeClip is not an official app provided or endorsed by YouTube or Google. Playing videos requires an internet connection and the YouTube app or a web browser.
+Video Recipe Book is not an official app provided or endorsed by YouTube or Google. Playing videos requires an internet connection and the YouTube app or a web browser.
 
 ## Keywords
 
@@ -50,5 +50,5 @@ recipe,cooking,video,shopping list,ingredients,meal planner,cookbook,kitchen,not
 
 ## Version
 
-- Version: 1.0.1
-- Build: 3
+- Version: 1.0.2
+- Build: 7

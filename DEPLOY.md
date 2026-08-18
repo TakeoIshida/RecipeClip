@@ -2,7 +2,7 @@
 
 ## 目的
 
-このMacで動くXcode 16.4では2026年のApp Store提出要件を満たせないため、ClickGirlで実績のあるGitHub Actions方式をレシピクリップ用に移植している。
+このMacで動くXcode 16.4では2026年のApp Store提出要件を満たせないため、ClickGirlで実績のあるGitHub Actions方式を動画レシピ帳用に移植している。
 
 Workflow: `.github/workflows/deploy.yml`
 

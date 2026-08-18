@@ -50,7 +50,7 @@ struct RecipeListView: View {
                     .listStyle(.plain)
                 }
             }
-            .navigationTitle("レシピクリップ")
+            .navigationTitle("動画レシピ帳")
             .searchable(text: $searchText, prompt: "料理名・チャンネル・材料")
             .safeAreaInset(edge: .top, spacing: 0) {
                 Picker("表示", selection: $filter) {

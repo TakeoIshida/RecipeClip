@@ -1,4 +1,4 @@
-/* English localization for RecipeClip. Japanese source strings are the stable keys. */
+/* English localization for Video Recipe Book. Japanese source strings are the stable keys. */
 "shopping.added_count" = "Added %ld items to the shopping list.";
 "shopping.updated_count" = "Added %ld items to the shopping list and updated %ld existing items.";
 "shopping.ingredient_added" = "Added “%@” to the shopping list.";
@@ -79,11 +79,11 @@
 "リンクを確認しているよ…" = "Checking the link…";
 "リンクを貼ると動画情報を自動取得するよ。次にYouTubeの説明欄をコピーして下へ貼ると、レシピも自動で作るよ。" = "Paste a link to fetch video details. Then paste the YouTube description below to organize it into a recipe.";
 "レシピ" = "Recipes";
-"レシピクリップ" = "RecipeClip";
-"レシピクリップについて" = "About RecipeClip";
-"レシピクリップのプライバシーポリシー" = "RecipeClip Privacy Policy";
+"動画レシピ帳" = "Video Recipe Book";
+"動画レシピ帳について" = "About Video Recipe Book";
+"動画レシピ帳のプライバシーポリシー" = "Video Recipe Book Privacy Policy";
 "レシピと買い物リストを復元したよ。" = "Your recipes and shopping list were restored.";
-"レシピに保存" = "Save to RecipeClip";
+"レシピに保存" = "Save to Video Recipe Book";
 "レシピの詳細から材料をまとめて追加できるよ。" = "Add ingredients from any recipe’s detail screen.";
 "レシピは端末内に保存" = "Recipes Stay on Your Device";
 "レシピを削除できなかったよ。もう一度試してね。" = "Couldn’t delete the recipe. Please try again.";
@@ -99,7 +99,7 @@
 "機種変更やアプリ削除の前に書き出す" = "Export before changing devices or deleting the app";
 "共有から保存した未編集レシピ" = "Draft saved from the Share Sheet";
 "共有をキャンセルしました。" = "Sharing was cancelled.";
-"共有先に見当たらないときは「その他」から追加してね。" = "If RecipeClip isn’t listed, add it from More.";
+"共有先に見当たらないときは「その他」から追加してね。" = "If Video Recipe Book isn’t listed, add it from More.";
 "検索条件や表示の切り替えを変えてみてね。" = "Try changing your search or filter.";
 "見つからなかったよ" = "No Recipes Found";
 "現在のデータを置き換えて復元" = "Replace Current Data and Restore";
@@ -126,7 +126,7 @@
 "作り方はまだ登録されていないよ。" = "No directions have been added yet.";
 "削除" = "Delete";
 "使い方ガイドを見る" = "View the Getting Started Guide";
-"使い方とデータ" = "Using RecipeClip & Your Data";
+"使い方とデータ" = "Using Video Recipe Book & Your Data";
 "次へ" = "Next";
 "ユーザーが貼り付けた説明欄のみを解析し、説明欄そのものは保存しません。" = "Only descriptions you paste are processed, and the original description is not stored.";
 "取得できない内容は、そのまま手入力で直せるよ。" = "You can manually add or correct anything that wasn’t detected.";
@@ -139,7 +139,7 @@
 "説明欄から無料でレシピを自動作成したよ。内容を確認して保存してね。" = "The recipe was organized on device. Review it before saving.";
 "説明欄に材料や手順を見つけられなかったよ。必要なところだけ手入力してね。" = "No ingredients or directions were found. Add anything missing manually.";
 "説明欄の解析は端末内" = "Descriptions Are Processed on Device";
-"プライバシー同意を確認できませんでした。すでに同意済みの場合も、下のボタンで再確認すると動画情報を取得できます。" = "RecipeClip could not verify your privacy consent. Even if you already agreed, confirm it again below to fetch video information.";
+"プライバシー同意を確認できませんでした。すでに同意済みの場合も、下のボタンで再確認すると動画情報を取得できます。" = "Video Recipe Book could not verify your privacy consent. Even if you already agreed, confirm it again below to fetch video information.";
 "前へ" = "Back";
 "操作を完了できなかったよ" = "Couldn’t complete the action";
 "大切なデータはアプリ情報からバックアップしてね。" = "Back up important data from App Info.";
@@ -188,28 +188,28 @@
 "保存する情報" = "Information Stored";
 "保存できなかったよ" = "Couldn’t Save";
 "保存できなかったよ。もう一度試してね。" = "Couldn’t save. Please try again.";
-"アプリと共有する保存場所を開けませんでした。レシピクリップ本体を一度開いてから、もう一度試してください。" = "The shared storage could not be opened. Open RecipeClip once, then try again.";
+"アプリと共有する保存場所を開けませんでした。動画レシピ帳本体を一度開いてから、もう一度試してください。" = "The shared storage could not be opened. Open Video Recipe Book once, then try again.";
 "共有したレシピを読み込めませんでした" = "Couldn’t Import the Shared Recipe";
-"下書き保存した内容は、レシピクリップ本体を開くとレシピ一覧に取り込まれます。" = "Saved drafts are imported into your recipe list when you open RecipeClip.";
+"下書き保存した内容は、動画レシピ帳本体を開くとレシピ一覧に取り込まれます。" = "Saved drafts are imported into your recipe list when you open Video Recipe Book.";
 "補足" = "Notes";
 "未購入" = "To Buy";
 "未編集" = "Draft";
 "料理も買い物も迷わない" = "Cook and Shop with Confidence";
-"料理動画の共有ボタンを押して「レシピクリップ」を選ぶだけ。動画名とチャンネルを下書き保存できるよ。" = "Tap Share on a cooking video and choose RecipeClip to save its title and channel as a draft.";
+"料理動画の共有ボタンを押して「動画レシピ帳」を選ぶだけ。動画名とチャンネルを下書き保存できるよ。" = "Tap Share on a cooking video and choose Video Recipe Book to save its title and channel as a draft.";
 "料理名" = "Recipe Name";
 "料理名・チャンネル・材料" = "Recipe, channel, or ingredient";
 "料理名、材料、手順、メモ、買い物リストは運営者のサーバーへ送信しません。" = "Recipe names, ingredients, directions, notes, and shopping lists are not sent to our servers.";
 "料理名、動画リンク、サムネイル、材料、手順、メモ、お気に入り、買い物リストを1つのファイルに保存するよ。" = "Save recipe names, video links, thumbnails, ingredients, directions, notes, favorites, and shopping lists in one file.";
 "料理名（必須）" = "Recipe Name (Required)";
-"料理名、材料、手順、メモ、お気に入り、買い物リストは、この端末内にのみ保存します。アカウント登録、広告、アクセス解析、トラッキングは使用しません。" = "Recipe names, ingredients, directions, notes, favorites, and shopping lists stay only on this device. RecipeClip does not use accounts, ads, analytics, or tracking.";
-"動画情報の取得時は、動画IDをYouTubeおよびGoogleへ送信します。通信に伴い、GoogleがIPアドレス、端末・アプリ情報、リクエスト日時などを取り扱う場合があります。ユーザーが貼り付けた説明欄は端末内で処理し、説明欄そのものは保存しません。" = "When retrieving video information, RecipeClip sends the video ID to YouTube and Google. Google may process your IP address, device and app information, request time, and related data. Descriptions you paste are processed on device and are not stored.";
+"料理名、材料、手順、メモ、お気に入り、買い物リストは、この端末内にのみ保存します。アカウント登録、広告、アクセス解析、トラッキングは使用しません。" = "Recipe names, ingredients, directions, notes, favorites, and shopping lists stay only on this device. Video Recipe Book does not use accounts, ads, analytics, or tracking.";
+"動画情報の取得時は、動画IDをYouTubeおよびGoogleへ送信します。通信に伴い、GoogleがIPアドレス、端末・アプリ情報、リクエスト日時などを取り扱う場合があります。ユーザーが貼り付けた説明欄は端末内で処理し、説明欄そのものは保存しません。" = "When retrieving video information, Video Recipe Book sends the video ID to YouTube and Google. Google may process your IP address, device and app information, request time, and related data. Descriptions you paste are processed on device and are not stored.";
 "保存したデータは、レシピ一覧と買い物リストから削除できます。アプリを削除すると端末内のデータも削除されるため、必要に応じてバックアップを書き出してください。" = "You can delete saved data from Recipes and the Shopping List. Deleting the app also deletes its on-device data, so export a backup when needed.";
-"本アプリはYouTube API Servicesを使用します。本アプリを利用することで、YouTube利用規約にも同意したものとみなされます。" = "RecipeClip uses YouTube API Services. By using the app, you also agree to the YouTube Terms of Service.";
-"本アプリはYouTubeまたはGoogleが提供・承認する公式アプリではありません。" = "RecipeClip is not an official app provided or endorsed by YouTube or Google.";
+"本アプリはYouTube API Servicesを使用します。本アプリを利用することで、YouTube利用規約にも同意したものとみなされます。" = "Video Recipe Book uses YouTube API Services. By using the app, you also agree to the YouTube Terms of Service.";
+"本アプリはYouTubeまたはGoogleが提供・承認する公式アプリではありません。" = "Video Recipe Book is not an official app provided or endorsed by YouTube or Google.";
 "料理名、動画URL、チャンネル名、材料、手順、メモ、買い物リスト、お気に入り状態、サムネイルは端末内に保存します。運営者が管理するサーバーへの送信、アカウントとの関連付け、広告目的の利用は行いません。" = "Recipe names, video URLs, channel names, ingredients, directions, notes, shopping lists, favorite status, and thumbnails are stored on this device. They are not sent to a server we operate, linked to an account, or used for advertising.";
-"動画情報を取得するため、指定された動画IDをYouTubeおよびGoogleのサービスへ送信し、動画タイトル、チャンネル名、サムネイルを取得します。この通信に伴い、GoogleがIPアドレス、端末・アプリ情報、リクエスト日時などを取り扱う場合があります。通信にはCookieを保存しない一時セッションを使用します。" = "To retrieve video information, RecipeClip sends the selected video ID to YouTube and Google services and receives the video title, channel name, and thumbnail. Google may process your IP address, device and app information, request time, and related data. Requests use an ephemeral session that does not store cookies.";
+"動画情報を取得するため、指定された動画IDをYouTubeおよびGoogleのサービスへ送信し、動画タイトル、チャンネル名、サムネイルを取得します。この通信に伴い、GoogleがIPアドレス、端末・アプリ情報、リクエスト日時などを取り扱う場合があります。通信にはCookieを保存しない一時セッションを使用します。" = "To retrieve video information, Video Recipe Book sends the selected video ID to YouTube and Google services and receives the video title, channel name, and thumbnail. Google may process your IP address, device and app information, request time, and related data. Requests use an ephemeral session that does not store cookies.";
 "ユーザーが貼り付けた動画説明欄は端末内のレシピ作成にのみ使用し、説明欄そのものは保存または外部送信しません。" = "Video descriptions you paste are used only to create recipes on this device. The original description is neither stored nor sent externally.";
-"広告SDK、アクセス解析SDK、ユーザーを横断的に追跡する技術は使用しません。" = "RecipeClip does not use advertising SDKs, analytics SDKs, or technology that tracks users across apps or websites.";
+"広告SDK、アクセス解析SDK、ユーザーを横断的に追跡する技術は使用しません。" = "Video Recipe Book does not use advertising SDKs, analytics SDKs, or technology that tracks users across apps or websites.";
 "保存したレシピと買い物リストはアプリ内から削除できます。アプリを端末から削除すると、アプリが保存したデータも削除されます。バックアップを書き出した場合、保存先のデータはユーザー自身で管理してください。" = "You can delete saved recipes and shopping items in the app. Deleting the app also deletes its stored data. If you export a backup, you are responsible for managing the exported file.";
 "機能や利用サービスを変更した場合、本ポリシーを更新することがあります。" = "This policy may be updated when app features or services change.";
 "2026年8月16日" = "August 16, 2026";

@@ -122,7 +122,7 @@ enum PendingShareDraftStoreError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .appGroupUnavailable:
-            return String(localized: "アプリと共有する保存場所を開けませんでした。レシピクリップ本体を一度開いてから、もう一度試してください。")
+            return String(localized: "アプリと共有する保存場所を開けませんでした。動画レシピ帳本体を一度開いてから、もう一度試してください。")
         }
     }
 }

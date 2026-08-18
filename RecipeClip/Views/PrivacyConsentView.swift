@@ -33,7 +33,7 @@ struct PrivacyConsentView: View {
                     )
 
                     VStack(alignment: .leading, spacing: 12) {
-                        NavigationLink("レシピクリップのプライバシーポリシー") {
+                        NavigationLink("動画レシピ帳のプライバシーポリシー") {
                             PrivacyPolicyView()
                         }
                         Link("Google プライバシーポリシー", destination: URL(string: "https://policies.google.com/privacy")!)

@@ -122,7 +122,7 @@ private struct AppStoreRecipeListView: View {
                     .padding(.vertical, 4)
                 }
                 .listStyle(.plain)
-                .navigationTitle("レシピクリップ")
+                .navigationTitle("動画レシピ帳")
                 .searchable(text: .constant(""), prompt: "料理名・チャンネル・材料")
                 .safeAreaInset(edge: .top, spacing: 0) {
                     Picker("表示", selection: .constant(RecipeFilter.all)) {
@@ -438,7 +438,7 @@ private enum AppStoreSampleData {
             makeRecipe(
                 id: featuredRecipeID,
                 title: "星降るトマトの焼きリゾット",
-                subtitle: "RecipeClip キッチン",
+                subtitle: "動画レシピ帳 キッチン",
                 colors: [UIColor(red: 0.97, green: 0.35, blue: 0.24, alpha: 1), UIColor(red: 1.00, green: 0.72, blue: 0.30, alpha: 1)],
                 ingredients: [("ごはん", "茶碗1杯"), ("カラフルミニトマト", "8個"), ("モッツァレラチーズ", "60g"), ("玉ねぎ", "1/4個"), ("野菜ブイヨン", "150ml")],
                 steps: ["玉ねぎをみじん切りにし、ミニトマトは半分に切る。", "フライパンで玉ねぎを透き通るまで炒め、ごはんとブイヨンを加える。", "水分が少し残るまで煮て、トマトとチーズを散らす。", "ふたをして2分蒸し焼きにし、チーズがとろけたら完成。"],
@@ -459,7 +459,7 @@ private enum AppStoreSampleData {
             makeRecipe(
                 id: featuredRecipeID,
                 title: "Starry Tomato Baked Risotto",
-                subtitle: "RecipeClip Kitchen",
+                subtitle: "Video Recipe Book Kitchen",
                 colors: [UIColor(red: 0.97, green: 0.35, blue: 0.24, alpha: 1), UIColor(red: 1.00, green: 0.72, blue: 0.30, alpha: 1)],
                 ingredients: [("Cooked rice", "1 bowl"), ("Colorful cherry tomatoes", "8"), ("Mozzarella", "60 g"), ("Onion", "1/4"), ("Vegetable stock", "150 ml")],
                 steps: ["Finely chop the onion and halve the cherry tomatoes.", "Sauté the onion until translucent, then add the rice and stock.", "Simmer until a little liquid remains, then scatter over the tomatoes and cheese.", "Cover and steam for 2 minutes, until the cheese melts."],
@@ -491,8 +491,8 @@ private enum AppStoreSampleData {
             title: title,
             channelName: subtitle ?? (
                 Locale.current.language.languageCode?.identifier == "en"
-                    ? "RecipeClip Kitchen"
-                    : "RecipeClip キッチン"
+                    ? "Video Recipe Book Kitchen"
+                    : "動画レシピ帳 キッチン"
             ),
             thumbnailData: thumbnail(colors: colors),
             isFavorite: favorite,

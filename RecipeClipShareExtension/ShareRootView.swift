@@ -65,7 +65,7 @@ struct ShareRootView: View {
                     }
 
                     Section {
-                        Label("下書き保存した内容は、レシピクリップ本体を開くとレシピ一覧に取り込まれます。", systemImage: "square.and.arrow.down")
+                        Label("下書き保存した内容は、動画レシピ帳本体を開くとレシピ一覧に取り込まれます。", systemImage: "square.and.arrow.down")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
