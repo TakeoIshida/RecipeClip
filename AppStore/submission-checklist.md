@@ -10,11 +10,11 @@
 - [x] 輸出コンプライアンス: 非免除暗号化の使用なし
 - [x] プライバシーマニフェストを本体とExtensionに同梱
 - [x] APIキー・有料AIキー・独自サーバーの秘密情報なし
-- [ ] Xcode 26以降とiOS 26 SDK以降でビルド
+- [x] Xcode 26.3とiOS 26 SDKでビルド
 - [x] ClickGirlで使用中のApple Team ID `JS3245KG7Q`をデプロイ設定に反映
-- [ ] Apple Developerで本体・ExtensionのApp IDと配布用署名を有効化
-- [ ] App IDとApp GroupをDeveloper Portalで登録
-- [ ] Release ArchiveをValidate Appで検証
+- [x] Apple Developerで本体・ExtensionのApp IDと配布用署名を有効化
+- [x] App IDとApp GroupをDeveloper Portalで登録
+- [x] Release Archive・IPA書き出し・App Store Connectアップロード成功（v1.1 / build 8）
 - [ ] TestFlightで実機確認
 - [x] App Store Connectで非消費型IAP `com.ishidatakeo.RecipeClip.unlimited` を作成し、日本500円に設定
 - [x] ローカルStoreKit設定と商品読込・購入権利・15件上限の自動テストが成功（4件）
