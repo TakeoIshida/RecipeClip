@@ -5,6 +5,7 @@ import UIKit
 @main
 struct RecipeClipApp: App {
     private let modelContainer: ModelContainer
+    @StateObject private var purchaseManager = PurchaseManager()
 
     init() {
         SharedModelContainer.repairPrivacyPolicyConsentSharingIfNeeded()
@@ -24,6 +25,7 @@ struct RecipeClipApp: App {
                 AppStoreScreenshotRoot(scene: scene)
             } else {
                 AppRootView()
+                    .environmentObject(purchaseManager)
             }
         }
         .modelContainer(modelContainer)
@@ -38,6 +40,7 @@ enum AppStoreScreenshotScene: String, CaseIterable {
     case detail
     case shopping
     case cooking
+    case unlimitedReview = "unlimited-review"
 
     static var current: Self? {
         let arguments = ProcessInfo.processInfo.arguments
@@ -88,6 +91,55 @@ private struct AppStoreScreenshotRoot: View {
             if let featuredRecipe {
                 AppStoreCookingModeView(recipe: featuredRecipe)
             }
+        case .unlimitedReview:
+            AppStoreUnlimitedReviewView()
+        }
+    }
+}
+
+/// App Reviewに買い切り解除の内容を伝える、撮影専用の静的な購入画面。
+/// StoreKitや実データには接続しない。
+private struct AppStoreUnlimitedReviewView: View {
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 24) {
+                Image(systemName: "books.vertical.fill")
+                    .font(.system(size: 64))
+                    .foregroundStyle(.tint)
+
+                VStack(spacing: 10) {
+                    Text("レシピを無制限に保存")
+                        .font(.title.bold())
+                    Text("無料版では15件まで保存できるよ。一度の購入で、広告なしのまま保存件数を無制限にできるよ。")
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Label("レシピの保存件数が無制限", systemImage: "checkmark.circle.fill")
+                    Label("追加の広告やサブスクなし", systemImage: "checkmark.circle.fill")
+                    Label("同じApple Accountで購入を復元", systemImage: "checkmark.circle.fill")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                Text("無制限版を¥500で購入")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 13)
+                    .foregroundStyle(.white)
+                    .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 12))
+
+                Text("購入を復元")
+                    .foregroundStyle(.tint)
+
+                Text("作成済みのレシピの閲覧・編集・バックアップは、無料上限に達した後も利用できるよ。")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding()
+            .navigationTitle("無制限版")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -10,3 +10,9 @@ To test automatic organization:
 3. Tap the organize button, review the result, and save.
 
 The included App Store screenshots use fictional recipes and code-generated abstract thumbnails. They contain no third-party photos, logos, people, characters, or product packaging.
+
+In-app purchase testing:
+- The free version saves up to 15 recipes.
+- After saving 15 recipes, tap the add button to open the Unlimited purchase screen.
+- Purchase and restore are also available from App Info > Unlimited Version and Restore Purchases.
+- Product ID: com.ishidatakeo.RecipeClip.unlimited (non-consumable).

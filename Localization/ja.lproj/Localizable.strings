@@ -10,3 +10,5 @@
 "shopping.source_recipe" = "追加元 %@";
 "recipe.saved_date" = "保存日 %@";
 "recipe.delete_confirmation" = "「%@」を削除する？";
+"unlimited.purchase_price" = "無制限版を%@で購入";
+"購入情報を再読み込み" = "購入情報を再読み込み";

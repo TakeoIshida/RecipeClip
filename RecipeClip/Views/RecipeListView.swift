@@ -1,21 +1,32 @@
 import SwiftData
+import StoreKit
 import SwiftUI
 
 struct RecipeListView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.requestReview) private var requestReview
+    @EnvironmentObject private var purchaseManager: PurchaseManager
     @Environment(\.scenePhase) private var scenePhase
     @State private var recipes: [Recipe] = []
     @State private var searchText = ""
     @State private var filter: RecipeFilter = .all
+    @State private var sort: RecipeSort = .newest
     @State private var showsEditor = false
+    @State private var showsUnlimitedRecipes = false
     @State private var recipePendingDeletion: Recipe?
     @State private var errorMessage: String?
+    @AppStorage("hasRequestedReviewAfterThirdRecipe") private var hasRequestedReview = false
 
     private var visibleRecipes: [Recipe] {
-        recipes.filter { recipe in
-            let matchesFilter = filter == .all || recipe.isFavorite
+        sort.sort(recipes.filter { recipe in
+            let matchesFilter: Bool
+            switch filter {
+            case .all: matchesFilter = true
+            case .favorites: matchesFilter = recipe.isFavorite
+            case .drafts: matchesFilter = recipe.isDraft
+            }
             return matchesFilter && RecipeFiltering.matches(recipe, query: searchText)
-        }
+        })
     }
 
     var body: some View {
@@ -51,7 +62,7 @@ struct RecipeListView: View {
                 }
             }
             .navigationTitle("動画レシピ帳")
-            .searchable(text: $searchText, prompt: "料理名・チャンネル・材料")
+            .searchable(text: $searchText, prompt: "料理名・材料・手順・メモ")
             .safeAreaInset(edge: .top, spacing: 0) {
                 Picker("表示", selection: $filter) {
                     ForEach(RecipeFilter.allCases) { item in
@@ -71,8 +82,25 @@ struct RecipeListView: View {
                         Label("アプリ情報", systemImage: "info.circle")
                     }
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Picker("並び順", selection: $sort) {
+                            ForEach(RecipeSort.allCases) { item in
+                                Text(LocalizedStringKey(item.rawValue)).tag(item)
+                            }
+                        }
+                    } label: {
+                        Label("並び替え", systemImage: "arrow.up.arrow.down")
+                    }
+                }
                 ToolbarItem(placement: .primaryAction) {
-                    Button { showsEditor = true } label: {
+                    Button {
+                        if purchaseManager.canAddRecipe(currentCount: recipes.count) {
+                            showsEditor = true
+                        } else {
+                            showsUnlimitedRecipes = true
+                        }
+                    } label: {
                         Label("レシピを追加", systemImage: "plus")
                     }
                 }
@@ -84,6 +112,9 @@ struct RecipeListView: View {
                 NavigationStack {
                     RecipeEditorView()
                 }
+            }
+            .sheet(isPresented: $showsUnlimitedRecipes) {
+                UnlimitedRecipesView()
             }
             .task {
                 reloadRecipes()
@@ -100,6 +131,15 @@ struct RecipeListView: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: .recipeClipBackupDidRestore)) { _ in
                 reloadRecipes()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .recipeClipDidSaveRecipe)) { _ in
+                reloadRecipes()
+                guard !hasRequestedReview, recipes.count >= 3 else { return }
+                hasRequestedReview = true
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(700))
+                    requestReview()
+                }
             }
             .confirmationDialog(
                 String.localizedStringWithFormat(
@@ -134,6 +174,7 @@ struct RecipeListView: View {
     private var emptyTitle: String {
         if !searchText.isEmpty { return String(localized: "見つからなかったよ") }
         if filter == .favorites { return String(localized: "お気に入りはまだないよ") }
+        if filter == .drafts { return String(localized: "未編集のレシピはないよ") }
         return String(localized: "レシピを保存しよう")
     }
 

@@ -31,6 +31,9 @@ Cooking Mode shows one direction at a time in large text, making it easy to foll
 ON-DEVICE STORAGE AND BACKUP
 No account is required. Recipes and shopping items are stored on your device, with file-based backup and restore when you need it.
 
+FREE FOR UP TO 15 RECIPES
+Save up to 15 recipes for free. A one-time Unlimited purchase removes the saving limit while keeping the app free of ads and subscriptions. You can continue to view, edit, and back up existing recipes after reaching the free limit.
+
 Video Recipe Book is not an official app provided or endorsed by YouTube or Google. Playing videos requires an internet connection and the YouTube app or a web browser.
 
 ## Keywords
@@ -48,7 +51,13 @@ recipe,cooking,video,shopping list,ingredients,meal planner,cookbook,kitchen,not
 - Privacy Policy URL: `https://takeoishida.github.io/RecipeClip/privacy-policy.html`
 - Marketing URL: Optional / blank
 
+## Pricing
+
+- Free download with up to 15 saved recipes
+- One-time non-consumable Unlimited purchase
+- Product ID: `com.ishidatakeo.RecipeClip.unlimited`
+
 ## Version
 
-- Version: 1.0.2
-- Build: 7
+- Version: 1.1
+- Build: 8

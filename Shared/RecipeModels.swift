@@ -123,8 +123,33 @@ final class ShoppingItem {
 enum RecipeFilter: String, CaseIterable, Identifiable {
     case all = "すべて"
     case favorites = "お気に入り"
+    case drafts = "未編集"
 
     var id: Self { self }
+}
+
+enum RecipeSort: String, CaseIterable, Identifiable {
+    case newest = "新しい順"
+    case oldest = "古い順"
+    case title = "料理名順"
+    case recentlyUpdated = "最近編集した順"
+
+    var id: Self { self }
+
+    func sort(_ recipes: [Recipe]) -> [Recipe] {
+        recipes.sorted { lhs, rhs in
+            switch self {
+            case .newest:
+                lhs.createdAt > rhs.createdAt
+            case .oldest:
+                lhs.createdAt < rhs.createdAt
+            case .title:
+                lhs.title.localizedStandardCompare(rhs.title) == .orderedAscending
+            case .recentlyUpdated:
+                lhs.updatedAt > rhs.updatedAt
+            }
+        }
+    }
 }
 
 enum RecipeFiltering {
@@ -132,8 +157,9 @@ enum RecipeFiltering {
         let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalizedQuery.isEmpty else { return true }
 
-        let searchableValues = [recipe.title, recipe.channelName]
-            + recipe.ingredients.map(\.name)
+        let searchableValues = [recipe.title, recipe.channelName, recipe.memo]
+            + recipe.ingredients.flatMap { [$0.name, $0.amount] }
+            + recipe.cookingSteps.map(\.text)
         return searchableValues.contains {
             $0.localizedCaseInsensitiveContains(normalizedQuery)
         }

@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct AppInfoView: View {
+    @EnvironmentObject private var purchaseManager: PurchaseManager
+    @State private var showsUnlimitedRecipes = false
+
     var body: some View {
         List {
             Section("動画レシピ帳について") {
@@ -19,6 +22,17 @@ struct AppInfoView: View {
                     BackupRestoreView()
                 } label: {
                     Label("バックアップと復元", systemImage: "externaldrive")
+                }
+            }
+
+            Section("無制限版") {
+                Button {
+                    showsUnlimitedRecipes = true
+                } label: {
+                    Label(
+                        purchaseManager.hasUnlimitedRecipes ? "無制限版を購入済み" : "無制限版と購入の復元",
+                        systemImage: purchaseManager.hasUnlimitedRecipes ? "checkmark.seal.fill" : "cart"
+                    )
                 }
             }
 
@@ -55,6 +69,9 @@ struct AppInfoView: View {
         }
         .navigationTitle("アプリ情報・プライバシー")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showsUnlimitedRecipes) {
+            UnlimitedRecipesView()
+        }
     }
 
     private var versionText: String {

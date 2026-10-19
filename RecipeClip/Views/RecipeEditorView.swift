@@ -15,6 +15,7 @@ struct CookingStepDraft: Identifiable, Equatable {
 struct RecipeEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject private var purchaseManager: PurchaseManager
 
     private let recipe: Recipe?
     private let metadataFetcher: any YouTubeMetadataFetching
@@ -424,6 +425,10 @@ struct RecipeEditorView: View {
         do {
             let canonicalURL = try YouTubeURLNormalizer.normalize(videoURL)
             let existingRecipes = try modelContext.fetch(FetchDescriptor<Recipe>())
+            if recipe == nil,
+               !purchaseManager.canAddRecipe(currentCount: existingRecipes.count) {
+                throw RecipeEditorError.freeLimitReached
+            }
             if existingRecipes.contains(where: {
                 $0.id != recipe?.id && $0.videoURL == canonicalURL.absoluteString
             }) {
@@ -472,6 +477,7 @@ struct RecipeEditorView: View {
             }
 
             try modelContext.save()
+            NotificationCenter.default.post(name: .recipeClipDidSaveRecipe, object: nil)
             dismiss()
         } catch {
             statusMessage = error.localizedDescription
@@ -480,10 +486,20 @@ struct RecipeEditorView: View {
     }
 }
 
+extension Notification.Name {
+    static let recipeClipDidSaveRecipe = Notification.Name("recipeClipDidSaveRecipe")
+}
+
 private enum RecipeEditorError: LocalizedError {
     case duplicateVideo
+    case freeLimitReached
 
     var errorDescription: String? {
-        "この動画はすでに保存されているよ。一覧から開いて編集してね。"
+        switch self {
+        case .duplicateVideo:
+            "この動画はすでに保存されているよ。一覧から開いて編集してね。"
+        case .freeLimitReached:
+            "無料の保存上限15件に達したよ。一度閉じて、無制限版を確認してね。"
+        }
     }
 }

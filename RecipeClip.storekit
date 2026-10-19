@@ -1,0 +1,40 @@
+{
+  "identifier" : "7A1A8915-3B35-40D5-9F28-481F2247310E",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "500",
+      "familyShareable" : false,
+      "internalID" : "8D15D600-507B-4D23-BA16-056046483795",
+      "localizations" : [
+        {
+          "description" : "レシピの保存件数を無制限にできます。広告やサブスクリプションはありません。",
+          "displayName" : "無制限版",
+          "locale" : "ja_JP"
+        },
+        {
+          "description" : "Save unlimited recipes with no ads or subscription.",
+          "displayName" : "Unlimited Version",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.ishidatakeo.RecipeClip.unlimited",
+      "referenceName" : "Unlimited Version",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "ja_JP",
+    "_storefront" : "JPN"
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

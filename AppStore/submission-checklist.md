@@ -5,7 +5,7 @@
 - [x] Bundle ID: `com.ishidatakeo.RecipeClip`
 - [x] Share Extension Bundle ID: `com.ishidatakeo.RecipeClip.ShareExtension`
 - [x] App Group: `group.com.ishidatakeo.RecipeClip`
-- [x] バージョン 1.0 / ビルド 2
+- [x] バージョン 1.1 / ビルド 8
 - [x] アプリアイコン 1024 x 1024、アルファなし
 - [x] 輸出コンプライアンス: 非免除暗号化の使用なし
 - [x] プライバシーマニフェストを本体とExtensionに同梱
@@ -16,6 +16,10 @@
 - [ ] App IDとApp GroupをDeveloper Portalで登録
 - [ ] Release ArchiveをValidate Appで検証
 - [ ] TestFlightで実機確認
+- [x] App Store Connectで非消費型IAP `com.ishidatakeo.RecipeClip.unlimited` を作成し、日本500円に設定
+- [x] ローカルStoreKit設定と商品読込・購入権利・15件上限の自動テストが成功（4件）
+- [ ] StoreKit Sandboxで購入・キャンセル・復元・保存上限解除を確認
+- [ ] 購入後にオフライン起動しても無制限版が維持されることを確認
 - [x] Xcode 26でテスト・Archive・アップロードするGitHub Actionsを準備
 
 ## App Store Connect
@@ -25,7 +29,7 @@
 - [ ] バンドルIDを選択
 - [ ] 一次カテゴリを「フード／ドリンク」に設定
 - [ ] 年齢区分の最新質問票に回答
-- [ ] 価格を日本100円相当の価格ポイントに設定
+- [ ] アプリ価格を無料に設定
 - [ ] 公開地域を確定
 - [ ] App Privacyを`privacy-answers.md`に沿って入力
 - [ ] サポートURLを公開・入力
@@ -33,6 +37,8 @@
 - [ ] 著作権表記を入力
 - [ ] 審査連絡先（氏名、電話、メール）を入力
 - [ ] 審査メモを貼り付け
+- [x] IAP審査用スクリーンショットを作成（`review-assets/unlimited-review-ja.png`）
+- [x] IAP審査用スクリーンショットをApp Store Connectへアップロード
 
 ## スクリーンショット
 

@@ -9,7 +9,7 @@
    </BuildAction>
    <TestAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv="YES">
       <Testables>
-         <TestableReference skipped="NO" parallelizable="YES">
+         <TestableReference skipped="NO" parallelizable="NO">
             <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="T00400000000000000000001" BuildableName="RecipeClipTests.xctest" BlueprintName="RecipeClipTests" ReferencedContainer="container:RecipeClip.xcodeproj"/>
          </TestableReference>
       </Testables>
@@ -18,6 +18,8 @@
       <BuildableProductRunnable runnableDebuggingMode="0">
          <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="T00100000000000000000001" BuildableName="RecipeClip.app" BlueprintName="RecipeClip" ReferencedContainer="container:RecipeClip.xcodeproj"/>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference identifier="../../RecipeClip.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction buildConfiguration="Release" shouldUseLaunchSchemeArgsEnv="YES" savedToolIdentifier="" useCustomWorkingDirectory="NO" debugDocumentVersioning="YES">
       <BuildableProductRunnable runnableDebuggingMode="0">

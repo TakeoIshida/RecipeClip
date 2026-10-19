@@ -23,6 +23,7 @@
 		B00100000000000000000014 /* BackupRestoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000015 /* BackupRestoreView.swift */; };
 		B00100000000000000000015 /* CookingModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000016 /* CookingModeView.swift */; };
 		B00100000000000000000016 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000017 /* OnboardingView.swift */; };
+		B00100000000000000000017 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00100000000000000000018 /* PurchaseManager.swift */; };
 		B00200000000000000000001 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000001 /* RecipeModels.swift */; };
 		B00200000000000000000002 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000002 /* SharedModelContainer.swift */; };
 		B00200000000000000000003 /* YouTubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00200000000000000000003 /* YouTubeService.swift */; };
@@ -42,6 +43,8 @@
 		B00400000000000000000003 /* RecipeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000003 /* RecipeModelTests.swift */; };
 		B00400000000000000000004 /* ShoppingListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000004 /* ShoppingListServiceTests.swift */; };
 		B00400000000000000000005 /* BackupServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000005 /* BackupServiceTests.swift */; };
+		B00400000000000000000006 /* PurchaseManagerStoreKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00400000000000000000006 /* PurchaseManagerStoreKitTests.swift */; };
+		B00400000000000000000007 /* RecipeClip.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F00700000000000000000001 /* RecipeClip.storekit */; };
 		B00600000000000000000001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = V00600000000000000000001 /* Localizable.strings */; };
 		B00600000000000000000002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = V00600000000000000000001 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -95,6 +98,7 @@
 		F00100000000000000000015 /* BackupRestoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupRestoreView.swift; sourceTree = "<group>"; };
 		F00100000000000000000016 /* CookingModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingModeView.swift; sourceTree = "<group>"; };
 		F00100000000000000000017 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F00100000000000000000018 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		F00200000000000000000001 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
 		F00200000000000000000002 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
 		F00200000000000000000003 /* YouTubeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeService.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 		F00400000000000000000003 /* RecipeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModelTests.swift; sourceTree = "<group>"; };
 		F00400000000000000000004 /* ShoppingListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListServiceTests.swift; sourceTree = "<group>"; };
 		F00400000000000000000005 /* BackupServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupServiceTests.swift; sourceTree = "<group>"; };
+		F00400000000000000000006 /* PurchaseManagerStoreKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManagerStoreKitTests.swift; sourceTree = "<group>"; };
+		F00700000000000000000001 /* RecipeClip.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = RecipeClip.storekit; sourceTree = "<group>"; };
 		F00500000000000000000001 /* RecipeClip.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = RecipeClip.xcconfig; sourceTree = "<group>"; };
 		F00500000000000000000002 /* Local.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig.example; sourceTree = "<group>"; };
 		F00600000000000000000001 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 		G00000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				F00700000000000000000001 /* RecipeClip.storekit */,
 				G00100000000000000000001 /* RecipeClip */,
 				G00200000000000000000001 /* Shared */,
 				G00300000000000000000001 /* RecipeClipShareExtension */,
@@ -203,6 +210,7 @@
 				F00100000000000000000007 /* RecipeAutoFillService.swift */,
 				F00100000000000000000013 /* ShoppingListService.swift */,
 				F00100000000000000000014 /* BackupService.swift */,
+				F00100000000000000000018 /* PurchaseManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 				F00400000000000000000003 /* RecipeModelTests.swift */,
 				F00400000000000000000004 /* ShoppingListServiceTests.swift */,
 				F00400000000000000000005 /* BackupServiceTests.swift */,
+				F00400000000000000000006 /* PurchaseManagerStoreKitTests.swift */,
 			);
 			path = RecipeClipTests;
 			sourceTree = "<group>";
@@ -396,6 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00400000000000000000007 /* RecipeClip.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +430,7 @@
 				B00100000000000000000014 /* BackupRestoreView.swift in Sources */,
 				B00100000000000000000015 /* CookingModeView.swift in Sources */,
 				B00100000000000000000016 /* OnboardingView.swift in Sources */,
+				B00100000000000000000017 /* PurchaseManager.swift in Sources */,
 				B00200000000000000000001 /* RecipeModels.swift in Sources */,
 				B00200000000000000000002 /* SharedModelContainer.swift in Sources */,
 				B00200000000000000000003 /* YouTubeService.swift in Sources */,
@@ -451,6 +462,7 @@
 				B00400000000000000000003 /* RecipeModelTests.swift in Sources */,
 				B00400000000000000000004 /* ShoppingListServiceTests.swift in Sources */,
 				B00400000000000000000005 /* BackupServiceTests.swift in Sources */,
+				B00400000000000000000006 /* PurchaseManagerStoreKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +597,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RecipeClip/RecipeClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = JS3245KG7Q;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RecipeClip/Info.plist;
@@ -594,7 +606,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -614,7 +626,7 @@
 				CODE_SIGN_ENTITLEMENTS = RecipeClip/RecipeClip.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = JS3245KG7Q;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RecipeClip/Info.plist;
@@ -623,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "RecipeClip AppStore 2026";
@@ -641,7 +653,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = RecipeClipShareExtension/RecipeClipShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = JS3245KG7Q;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RecipeClipShareExtension/Info.plist;
@@ -651,7 +663,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -670,7 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = RecipeClipShareExtension/RecipeClipShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = JS3245KG7Q;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = RecipeClipShareExtension/Info.plist;
@@ -680,7 +692,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ishidatakeo.RecipeClip.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "RecipeClip Share AppStore 2026";

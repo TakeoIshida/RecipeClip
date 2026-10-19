@@ -146,17 +146,28 @@ enum PendingShareDraftStore {
     }
 
     @discardableResult
-    static func importPendingDrafts(into modelContext: ModelContext) throws -> Int {
+    static func importPendingDrafts(
+        into modelContext: ModelContext,
+        maxNewRecipes: Int? = nil
+    ) throws -> Int {
         guard let containerURL = SharedModelContainer.appGroupContainerURL else {
             // The Share Extension reports this problem when the user actually
             // saves. Avoid showing an import alert on every main-app launch.
             return 0
         }
-        return try importPendingDrafts(into: modelContext, from: containerURL)
+        return try importPendingDrafts(
+            into: modelContext,
+            from: containerURL,
+            maxNewRecipes: maxNewRecipes
+        )
     }
 
     @discardableResult
-    static func importPendingDrafts(into modelContext: ModelContext, from containerURL: URL) throws -> Int {
+    static func importPendingDrafts(
+        into modelContext: ModelContext,
+        from containerURL: URL,
+        maxNewRecipes: Int? = nil
+    ) throws -> Int {
         let directoryURL = containerURL.appendingPathComponent(directoryName, isDirectory: true)
         guard FileManager.default.fileExists(atPath: directoryURL.path) else { return 0 }
 
@@ -167,6 +178,7 @@ enum PendingShareDraftStore {
         ).filter { $0.pathExtension == "json" }
 
         var importedFiles: [URL] = []
+        var newRecipeCount = 0
         for fileURL in fileURLs {
             guard let data = try? Data(contentsOf: fileURL),
                   let draft = try? JSONDecoder().decode(PendingShareDraft.self, from: data),
@@ -177,6 +189,9 @@ enum PendingShareDraftStore {
             let draftID = draft.id
             let descriptor = FetchDescriptor<Recipe>(predicate: #Predicate { $0.id == draftID })
             if try modelContext.fetchCount(descriptor) == 0 {
+                if let maxNewRecipes, newRecipeCount >= maxNewRecipes {
+                    continue
+                }
                 modelContext.insert(
                     Recipe(
                         id: draft.id,
@@ -191,6 +206,7 @@ enum PendingShareDraftStore {
                         metadataUpdatedAt: draft.metadataUpdatedAt
                     )
                 )
+                newRecipeCount += 1
             }
             importedFiles.append(fileURL)
         }
@@ -201,5 +217,20 @@ enum PendingShareDraftStore {
             try FileManager.default.removeItem(at: fileURL)
         }
         return importedFiles.count
+    }
+
+    static func pendingDraftCount() throws -> Int {
+        guard let containerURL = SharedModelContainer.appGroupContainerURL else { return 0 }
+        return try pendingDraftCount(in: containerURL)
+    }
+
+    static func pendingDraftCount(in containerURL: URL) throws -> Int {
+        let directoryURL = containerURL.appendingPathComponent(directoryName, isDirectory: true)
+        guard FileManager.default.fileExists(atPath: directoryURL.path) else { return 0 }
+        return try FileManager.default.contentsOfDirectory(
+            at: directoryURL,
+            includingPropertiesForKeys: nil,
+            options: [.skipsHiddenFiles]
+        ).lazy.filter { $0.pathExtension == "json" }.count
     }
 }
